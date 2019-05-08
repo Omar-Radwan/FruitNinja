@@ -1,5 +1,6 @@
 package gui.related;
 
-public class LevelType {
-
+public abstract class LevelType extends HomeScreen {
+	
+	
 }
