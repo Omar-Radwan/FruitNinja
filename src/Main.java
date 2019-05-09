@@ -11,9 +11,8 @@ public class Main extends Application{
 	public void start(Stage primaryStage) throws Exception {
 		HomeScreen homeScreen = new HomeScreen(primaryStage);
 		homeScreen.screen();
+		
 		primaryStage.setTitle("Fruit Ninja");
-		
-		
 		primaryStage.show();
 		
 	}

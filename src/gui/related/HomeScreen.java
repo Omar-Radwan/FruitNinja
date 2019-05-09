@@ -13,6 +13,8 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.scene.image.ImageView;
+import javafx.scene.control.Label;
 
 public class HomeScreen {
 	protected Stage stage;
@@ -22,19 +24,32 @@ public class HomeScreen {
 	public HomeScreen(Stage stage) {
 		this.stage = stage;
 	}
+	
+     
 
-	private Button easy = new Button("Easy");
+	private Button easy= new Button("Easy");
 	private Button medium = new Button("Medium");
 	private Button hard = new Button("Hard");
 	private LevelType level;
 
 	private void setStyle(Button button) {
-		button.setStyle("-fx-font-size: 15pt;");
+		
+		button.setStyle("-fx-background-color: \r\n" + 
+				"        #c3c4c4,\r\n" + 
+				"        linear-gradient(#d6d6d6 50%, white 100%),\r\n" + 
+				"        radial-gradient(center 50% -40%, radius 200%, #e6e6e6 45%, rgba(230,230,230,0) 50%);\r\n" + 
+				"    -fx-background-radius: 30;\r\n" + 
+				"    -fx-background-insets: 0,1,1;\r\n" + 
+				"    -fx-text-fill: black;\r\n" + 
+				"    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 3, 0.0 , 0 , 1 );");
+	
 		// law 3ayez a add kaza style lel buttons heya method wa7da mesh lazem amla el
 		// code kolo nfs el setstyle wenabi
 	}
 
 	public void screen() {
+		
+		 
 		setStyle(easy);
 		setStyle(medium);
 		setStyle(hard);
