@@ -67,8 +67,6 @@ public abstract class LevelType extends HomeScreen {
 		timerLabel.setTextFill(Color.RED);
 		timerLabel.setStyle("-fx-font-size: 4em;");
 		hb.getChildren().add(timerLabel);
-		hb.setLayoutX(760);
-		hb.setLayoutY(0);
 		timeSeconds = StartTime;
 
 		// update timerLabel
@@ -103,7 +101,7 @@ public abstract class LevelType extends HomeScreen {
 		VBox vb = new VBox(10);
 		
 		vb.getChildren().addAll(hb,currentScore , best);
-		root.getChildren().addAll(hb);
+		root.getChildren().addAll(vb);
 				Scene scene = new Scene(root , 800 , 500);
 		stage.setScene(scene);
 		
