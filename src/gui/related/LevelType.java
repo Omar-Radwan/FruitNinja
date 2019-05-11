@@ -1,5 +1,8 @@
 package gui.related;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -13,6 +16,9 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Path;
+import javafx.scene.shape.PathElement;
+import javafx.scene.shape.QuadCurveTo;
 import javafx.stage.Stage;
 
 public abstract class LevelType extends HomeScreen {
@@ -20,17 +26,13 @@ public abstract class LevelType extends HomeScreen {
 	private GraphicsContext gc;
 	private Canvas canvas = new Canvas(800 , 500);
 	static int bestScore = 0;
+	private ArrayList<Sprite> objects = new ArrayList<Sprite>();
 	public void level(Stage stage) {
 		root.getChildren().add(canvas);
 		gc = canvas.getGraphicsContext2D();
 		Image background = new Image("file:src/gui/related/background.jpg");
-		BackgroundImage bgImg = new BackgroundImage(background, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
-				BackgroundPosition.DEFAULT,
-				new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false));
-		//HBox hb = new HBox();
 		gc.drawImage(background, 0, 0);
-		//hb.setBackground(new Background(bgImg));
-		//root.getChildren().add(hb);
+		
 		
 		//label to current score : 
 		int currentS = 0;
@@ -43,6 +45,37 @@ public abstract class LevelType extends HomeScreen {
 		stage.setScene(scene);
 		
 		
+	}
+	public void setImages() {
+		Random random = new Random();
+		int i =random.nextInt(3);
+		if(i == 1)
+			objects.add(new Sprite(new Image("file:src/gui/related/Banana.png")));
+		else if(i == 2)
+			objects.add(new Sprite(new Image("file:src/gui/related/Mango.png")));
+		else if( i == 3)
+			objects.add(new Sprite(new Image("file:src/gui/related/Watermelon.png")));
+
+		
+		
+	}
+	public void rendering() {
+		for(Sprite e : objects)
+			e.render(gc);
+	}
+	public void setPositionX() {
+		Random random = new Random();
+		for(Sprite e : objects) {
+		int positionX = 200 + random.nextInt(500);
+		e.setPositinoX(positionX);
+		}
+	}
+	public void setPath() {
+		
+		QuadCurveTo quadCurve = new QuadCurveTo();
+		
+		Path path = new Path(new PathElement());
+
 	}
 	
 	
