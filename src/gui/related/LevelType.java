@@ -62,15 +62,13 @@ public abstract class LevelType extends HomeScreen {
 		
 		
 		
-		HBox hb = new HBox();
+		
 		timerLabel.setText(timeSeconds.toString());
 		timerLabel.setTextFill(Color.RED);
 		timerLabel.setStyle("-fx-font-size: 4em;");
-		hb.getChildren().add(timerLabel);
+		timerLabel.setLayoutX(750);
+		timerLabel.setLayoutY(0);
 		timeSeconds = StartTime;
-
-		// update timerLabel
-		timerLabel.setText(timeSeconds.toString());
 		timeline = new Timeline();
 		timeline.setCycleCount(Timeline.INDEFINITE);
 		timeline.getKeyFrames().add(
@@ -100,8 +98,8 @@ public abstract class LevelType extends HomeScreen {
 		
 		VBox vb = new VBox(10);
 		
-		vb.getChildren().addAll(hb,currentScore , best);
-		root.getChildren().addAll(vb);
+		vb.getChildren().addAll(currentScore , best);
+		root.getChildren().addAll(vb,timerLabel);
 				Scene scene = new Scene(root , 800 , 500);
 		stage.setScene(scene);
 		
