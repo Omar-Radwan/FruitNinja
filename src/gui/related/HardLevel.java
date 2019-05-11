@@ -1,5 +1,9 @@
 package gui.related;
 
-public class HardLevel extends LevelType{
+import javafx.stage.Stage;
 
+public class HardLevel extends LevelType{
+	public HardLevel(Stage stage) {
+		level(stage );
+	}
 }
