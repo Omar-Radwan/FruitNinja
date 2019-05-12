@@ -15,7 +15,7 @@ public class Sprite {
 	public Sprite(Image image) {
 		this.image = image;
 		positionX = 0;
-		positionY = 800;
+		positionY = 400;
 		width = image.getWidth();
 		height = image.getHeight();
 	}
