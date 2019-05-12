@@ -1,8 +1,8 @@
-
-public class Bomb extends GameObject {
-	private boolean isFatal;
-
+public abstract class Bomb extends GameObject {
+	protected boolean isFatal;
+	
 	public boolean isFatal() {
 		return isFatal;
 	}
+	
 }

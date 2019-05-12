@@ -1,14 +1,26 @@
+
+
 import java.awt.image.BufferedImage;
 
 public abstract class GameObject implements iGameObject {
-	private int xLocation;
-	private int yLocation;
-	private int maxHeight;
-	private int initialVelocity;
-	private int fallingVelocity;
-	private boolean isSliced;
-	private boolean hasMovedOffScreen;
-	private BufferedImage[] bufferedImages;
+
+	protected int xLocation;
+	protected int yLocation;
+	protected int maxHeight;
+	protected int initialVelocity;
+	protected int fallingVelocity;
+	protected boolean hasMovedOffScreen;
+	
+	protected boolean isSliced;
+	protected BufferedImage[] bufferedImages;
+
+	protected BufferedImagesFactory bufferedImagesFactory;
+
+	public GameObject() {
+		super();
+		this.bufferedImagesFactory = BufferedImagesFactory.getInstance();
+		isSliced = false;
+	}
 
 	@Override
 	public int getXlocation() {

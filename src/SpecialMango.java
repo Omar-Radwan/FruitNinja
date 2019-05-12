@@ -1,6 +1,8 @@
 
 public class SpecialMango extends Fruit {
-	public int getScore() {
-		return super.getScore() * 2;
+	public SpecialMango() {
+		super();
+		bufferedImages = bufferedImagesFactory.getSpecialMangoImages();
+		this.score *= 2;
 	}
 }
