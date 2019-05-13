@@ -1,4 +1,9 @@
+import java.util.Random;
 
-public class LevelModel {
+public abstract class LevelModel {
+
+	protected double[] speedRanges;
+
+	Random r = new Random();
 
 }

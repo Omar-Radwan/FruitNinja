@@ -1,4 +1,4 @@
 
-public class MediumLevelModel {
+public class MediumLevelModel extends LevelModel {
 
 }

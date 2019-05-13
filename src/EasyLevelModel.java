@@ -1,4 +1,4 @@
 
-public class EasyLevelModel {
+public class EasyLevelModel extends LevelModel {
 
 }

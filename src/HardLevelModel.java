@@ -1,4 +1,4 @@
 
-public class HardLevelModel {
+public class HardLevelModel extends LevelModel {
 
 }
