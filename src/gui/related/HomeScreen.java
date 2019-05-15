@@ -1,5 +1,6 @@
 package gui.related;
 
+import Controller.Controller;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -13,12 +14,24 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import levelmodels.EasyLevelModel;
+import levelmodels.HardLevelModel;
+import levelmodels.MediumLevelModel;
 
 public class HomeScreen {
 	private Stage stage;
+	private Controller controller;
 
 	public HomeScreen() {
 
+	}
+
+	public Controller getController() {
+		return controller;
+	}
+
+	public void setController(Controller controller) {
+		this.controller = controller;
 	}
 
 	public HomeScreen(Stage stage) {
@@ -28,12 +41,14 @@ public class HomeScreen {
 	private Button easy = new Button("Easy");
 	private Button medium = new Button("Medium");
 	private Button hard = new Button("Hard");
-	private LevelType level;
+	private LevelView level;
 
 	private void setStyle(Button button) {
+		
 		// button.setStyle("-fx-font-size: 15pt;");
 		// law 3ayez a add kaza style lel buttons heya method wa7da mesh lazem amla el
 		// code kolo nfs el setstyle wenabi
+		
 		button.setStyle("-fx-background-color: \r\n" + "        #F79704,\r\n"
 				+ "        linear-gradient(#F79704 50%, white 100%),\r\n"
 				+ "        radial-gradient(center 50% -40%, radius 200%, #F79704 45%, rgba(230,230,230,0) 50%);\r\n"
@@ -57,7 +72,11 @@ public class HomeScreen {
 
 			@Override
 			public void handle(ActionEvent arg0) {
-				level = new EasyLevel(stage);
+				level = new LevelView();
+				level.setStage(stage);
+				level.setController(controller);
+				controller.setLevelView(level);
+				controller.setLeveModel(new EasyLevelModel());
 
 			}
 		});
@@ -66,8 +85,11 @@ public class HomeScreen {
 
 			@Override
 			public void handle(ActionEvent arg0) {
-				level = new MediumLevel(stage);
-
+				level = new LevelView();
+				level.setStage(stage);
+				level.setController(controller);
+				controller.setLevelView(level);
+				controller.setLeveModel(new MediumLevelModel());
 			}
 		});
 		// TODO: hard set on action
@@ -75,7 +97,11 @@ public class HomeScreen {
 
 			@Override
 			public void handle(ActionEvent arg0) {
-				level = new HardLevel(stage);
+				level = new LevelView();
+				level.setStage(stage);
+				level.setController(controller);
+				controller.setLevelView(level);
+				controller.setLeveModel(new HardLevelModel());
 
 			}
 		});

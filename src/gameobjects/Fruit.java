@@ -1,3 +1,4 @@
+package gameobjects;
 
 
 public class Fruit extends GameObject {

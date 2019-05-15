@@ -1,8 +1,9 @@
+package gameobjects;
 
 public class SpecialMango extends Fruit {
 	public SpecialMango() {
 		super();
-		bufferedImages = bufferedImagesFactory.getSpecialMangoImages();
+		images = bufferedImagesFactory.getSpecialMangoImages();
 		this.score *= 2;
 	}
 }
