@@ -40,21 +40,27 @@ public class BufferedImagesFactory {
 		types.add("nonfatalbomb");
 
 		for (String type : types) {
+			
 			// should contain the image of whole fruit ... image of right part .... image of
 			// left part in case of fruit
 			// should contain the image of whole bomb ... image of destroyed bomb
+			
 			BufferedImage[] bufferedImages = new BufferedImage[3];
-
+			
 			try {
+				
 				bufferedImages[0] = ImageIO.read(new File("src/gui/related/" + type + ".png"));
+				
 				// bufferedImages[1] = ImageIO.read(new File(type + "right.png"));
 				// bufferedImages[1] = ImageIO.read(new File(type + "left.png"));
 				// bufferedImages[1] = ImageIO.read(new File(type + "destoryed.png"));
+				
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-
+			
 			bufferedImageMap.put(type, bufferedImages);
+			
 		}
 
 	}
