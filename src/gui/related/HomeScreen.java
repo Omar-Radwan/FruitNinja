@@ -16,6 +16,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import levelmodels.EasyLevelModel;
 import levelmodels.HardLevelModel;
+import levelmodels.LevelModel;
 import levelmodels.MediumLevelModel;
 
 public class HomeScreen {
@@ -44,11 +45,11 @@ public class HomeScreen {
 	private LevelView level;
 
 	private void setStyle(Button button) {
-		
+
 		// button.setStyle("-fx-font-size: 15pt;");
 		// law 3ayez a add kaza style lel buttons heya method wa7da mesh lazem amla el
 		// code kolo nfs el setstyle wenabi
-		
+
 		button.setStyle("-fx-background-color: \r\n" + "        #F79704,\r\n"
 				+ "        linear-gradient(#F79704 50%, white 100%),\r\n"
 				+ "        radial-gradient(center 50% -40%, radius 200%, #F79704 45%, rgba(230,230,230,0) 50%);\r\n"
@@ -72,11 +73,7 @@ public class HomeScreen {
 
 			@Override
 			public void handle(ActionEvent arg0) {
-				level = new LevelView();
-				level.setStage(stage);
-				level.setController(controller);
-				controller.setLevelView(level);
-				controller.setLeveModel(new EasyLevelModel());
+				createNewLevel(new EasyLevelModel());
 
 			}
 		});
@@ -85,11 +82,7 @@ public class HomeScreen {
 
 			@Override
 			public void handle(ActionEvent arg0) {
-				level = new LevelView();
-				level.setStage(stage);
-				level.setController(controller);
-				controller.setLevelView(level);
-				controller.setLeveModel(new MediumLevelModel());
+				createNewLevel(new MediumLevelModel());
 			}
 		});
 		// TODO: hard set on action
@@ -97,12 +90,7 @@ public class HomeScreen {
 
 			@Override
 			public void handle(ActionEvent arg0) {
-				level = new LevelView();
-				level.setStage(stage);
-				level.setController(controller);
-				controller.setLevelView(level);
-				controller.setLeveModel(new HardLevelModel());
-
+				createNewLevel(new HardLevelModel());
 			}
 		});
 
@@ -115,6 +103,12 @@ public class HomeScreen {
 
 		Scene scene = new Scene(vb, 800, 500);
 		stage.setScene(scene);
+	}
+
+	private void createNewLevel(LevelModel levelModel) {
+		controller.setLeveModel(levelModel);
+		level = new LevelView(controller, stage);
+		controller.setLevelView(level);
 	}
 
 }

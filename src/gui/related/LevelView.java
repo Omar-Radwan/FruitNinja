@@ -56,6 +56,13 @@ public class LevelView {
 		return stage;
 	}
 
+	public LevelView(Controller controller, Stage stage) {
+		this.controller = controller;
+		this.stage = stage;
+
+		level();
+	}
+
 	public void setStage(Stage stage) {
 		this.stage = stage;
 	}
@@ -132,7 +139,6 @@ public class LevelView {
 		root.getChildren().addAll(vb, timerLabel);
 		scene = new Scene(root, 800, 500);
 		stage.setScene(scene);
-		stage.show();
 		cut();
 
 	}
@@ -235,7 +241,7 @@ public class LevelView {
 	public void setImages() {
 
 		GameObject x = controller.getLevelModel().getFruit();
-
+		System.out.println(x.getImages()[0]);
 		objects.add(new Sprite(x.getImages()[0], x.radius));
 
 		int j = random.nextInt(2);

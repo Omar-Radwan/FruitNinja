@@ -24,11 +24,13 @@ public abstract class LevelModel {
 
 	public GameObject getFruit() {
 		int i = r.nextInt(3);
-
+		System.out.println(i);
 		if (i == 0)
 			return new Banana();
-		else if (i == 1)
+		else if (i == 1) {
 			return new Mango();
+		}
+
 		else
 			return new Mango(); // remember the bati5a
 	}
