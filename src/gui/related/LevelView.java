@@ -242,16 +242,7 @@ public class LevelView {
 		pathT.setAutoReverse(false);
 		pathT.setCycleCount(1);
 		pathT.setDelay(Duration.millis(1000));
-
-		PathTransition pat2 = new PathTransition();
-		pat2.setNode(specialFruit.get(i).getCircle());
-		pat2.setPath(path);
-		pat2.setAutoReverse(false);
-		pat2.setCycleCount(1);
-		pat2.setDuration(Duration.millis(1000));
 		pathT.play();
-		pat2.play();
-
 	}
 
 	public void setFatalBomb() {
@@ -293,16 +284,12 @@ public class LevelView {
 		int j = random.nextInt(2);
 
 		if (j == 0) {
-			// System.out.println(objects.get(objects.size() -1).getPositionY());
 			setPositionX(normalBomb.get(normalBomb.size() - 1));
 		} else if (j == 1) {
-			// System.out.println("FU");
 			setPositionY(normalBomb.get(normalBomb.size() - 1));
 		}
 
-		// setPositionX();
 		normalBombs++;
-		// renderingNormalbomb();
 
 	}
 
@@ -312,7 +299,6 @@ public class LevelView {
 					@Override
 					public void handle(Event event) {
 						setNormalBomb();
-						// setPathOfNormalBombs(normalBombs - 1);
 						setPath(normalBomb.get(normalBombs - 1), normalBombDur);
 					}
 				}));
@@ -329,7 +315,6 @@ public class LevelView {
 					@Override
 					public void handle(Event event) {
 						setImages();
-						// setPathObjects(objectsNumb - 1);
 						setPath(objects.get(objectsNumb - 1), pathFruitDur);
 					}
 				}));
@@ -340,141 +325,38 @@ public class LevelView {
 
 	}
 
-	/*
-	 * public void renderingFatalbomb() { for (Sprite e : fatalBomb) e.render(gc); }
-	 * public void renderingNormalbomb() { for (Sprite e : normalBomb) e.render(gc);
-	 * }
-	 */
 
 	public void setImages() {
 
 		GameObject x = controller.getFruit();
 		objects.add(new Sprite(x.getImages()[0], x.radius, x.getNumber()));
-		// mouse.setPic(x.getNumber());
 
 		int j = random.nextInt(2);
 		if (j == 0) {
-			// System.out.println(objects.get(objects.size() -1).getPositionY());
 			setPositionX(objects.get(objects.size() - 1));
 		} else if (j == 1) {
-			// System.out.println("FU");
 			setPositionY(objects.get(objects.size() - 1));
 		}
 		objectsNumb++;
-		// rendering();
 	}
 
-	/*
-	 * public void rendering() { // gc.clearRect(0, 0, 800, 500); for(Sprite e :
-	 * objects) e.render(gc); }
-	 */
+	
 	public void setPositionX(Sprite e) {
-		// for(Sprite e : objects) {
-		/* int positionX = */// random.nextInt(200);
+		
 		e.setPositinoX(random.nextInt(200));
-		// e.setPositionY(500);
 	}
 
 	public void setPositionY(Sprite e) {
 		e.setPositionY(random.nextInt(200));
+		Random r = new Random();
+		int y = r.nextInt(2);
+		if(y == 0)
 		e.setPositinoX(0);
+		else 
+			e.setPositinoX(870);
 	}
 
-	public void updateGame() {
-		gc.drawImage(background, 0, 0);
-		for (Sprite e : objects) {
-			// e.updateLocations();
-			e.render(gc);
-		}
-
-		for (Sprite e : fatalBomb) {
-			// e.updateLocations();
-			e.render(gc);
-		}
-		for (Sprite e : normalBomb) {
-			// e.updateLocations();
-			e.render(gc);
-		}
-
-	}
-
-	/*
-	 * public void setPathObjects(int i) { QuadCurveTo quadCurve = new
-	 * QuadCurveTo(); Path path = new Path(); double x; //
-	 * System.out.println(objects.get(i).getPositionY()); if
-	 * (objects.get(i).getPositionY() == 500) { x = objects.get(i).getPositionX();
-	 * path.getElements().add(new MoveTo(x, 550)); quadCurve.setX(400 +
-	 * random.nextInt(300)); quadCurve.setY(600); quadCurve.setControlX(800);
-	 * quadCurve.setControlY(50); } else { // System.out.println("FU"); x =
-	 * objects.get(i).getPositionY(); path.getElements().add(new MoveTo(0, x));
-	 * quadCurve.setX(400 + random.nextInt(300)); quadCurve.setY(600);
-	 * quadCurve.setControlX(600); quadCurve.setControlY(100);
-	 * 
-	 * } // MoveTo move = new MoveTo(x, 400); path.getElements().add(quadCurve);
-	 * root.getChildren().add(objects.get(i).getImage()); pathT = new
-	 * PathTransition(); // root.getChildren().add(objects.get(i).getCircle());
-	 * pathT.setNode(objects.get(i).getImage()); //
-	 * pathT.setNode(objects.get(i).getCircle()); pathT.setPath(path);
-	 * pathT.setAutoReverse(false); pathT.setCycleCount(Timeline.INDEFINITE);
-	 * pathT.setDuration(Duration.millis(controller.getLevelModel().getPathFruitDur(
-	 * ))); // path for circle PathTransition pt2 = new PathTransition();
-	 * pt2.setNode(objects.get(i).getCircle()); pt2.setPath(path);
-	 * pt2.setAutoReverse(false); pt2.setCycleCount(1);
-	 * pt2.setDuration(Duration.millis(controller.getLevelModel().getPathFruitDur())
-	 * ); pathT.play(); pt2.play();
-	 * 
-	 * // System.out.println(objects.get(0).getPositionX()); // rendering(); //
-	 * System.out.println(objects.get(0).getImage()); }
-	 */
-	/*
-	 * public void setPathOfFatalBombs(int i) { Path path = new Path(); QuadCurveTo
-	 * quadCurve = new QuadCurveTo(); double x; if (fatalBomb.get(i).getPositionY()
-	 * == 500) { x = fatalBomb.get(i).getPositionX(); path.getElements().add(new
-	 * MoveTo(x, 550)); quadCurve.setX(400 + random.nextInt(300));
-	 * quadCurve.setY(600); quadCurve.setControlX(500); quadCurve.setControlY(200);
-	 * } else { // System.out.println("FU"); x = fatalBomb.get(i).getPositionY();
-	 * path.getElements().add(new MoveTo(0, x)); quadCurve.setX(400 +
-	 * random.nextInt(300)); quadCurve.setY(600); quadCurve.setControlX(600);
-	 * quadCurve.setControlY(100);
-	 * 
-	 * } // MoveTo move = new MoveTo(x, 400); path.getElements().add(quadCurve);
-	 * root.getChildren().add(fatalBomb.get(i).getImage()); PathTransition pat = new
-	 * PathTransition(); // pat = new PathTransition();
-	 * pat.setNode(fatalBomb.get(i).getImage()); pat.setPath(path);
-	 * pat.setAutoReverse(false); pat.setCycleCount(1);
-	 * pat.setDuration(Duration.millis(controller.getLevelModel().getPathFatalDur())
-	 * ); PathTransition pat2 = new PathTransition(); // pat = new PathTransition();
-	 * pat2.setNode(fatalBomb.get(i).getCircle()); pat2.setPath(path);
-	 * pat2.setAutoReverse(false); pat2.setCycleCount(1);
-	 * pat2.setDuration(Duration.millis(controller.getLevelModel().getPathFatalDur()
-	 * )); pat.play(); pat2.play(); }
-	 */
-
-	/*
-	 * public void setPathOfNormalBombs(int i) { Path path = new Path(); QuadCurveTo
-	 * quadCurve = new QuadCurveTo(); double x; if (normalBomb.get(i).getPositionY()
-	 * == 500) { x = normalBomb.get(i).getPositionX(); path.getElements().add(new
-	 * MoveTo(x, 550)); quadCurve.setX(400 + random.nextInt(300));
-	 * quadCurve.setY(600); quadCurve.setControlX(800); quadCurve.setControlY(50); }
-	 * else { x = normalBomb.get(i).getPositionY(); path.getElements().add(new
-	 * MoveTo(0, x)); quadCurve.setX(400 + random.nextInt(300));
-	 * quadCurve.setY(600); quadCurve.setControlX(600); quadCurve.setControlY(100);
-	 * 
-	 * } // MoveTo move = new MoveTo(x, 400); path.getElements().add(quadCurve);
-	 * root.getChildren().add(normalBomb.get(i).getImage()); PathTransition pat =
-	 * new PathTransition(); pat = new PathTransition();
-	 * pat.setNode(normalBomb.get(i).getImage()); pat.setPath(path);
-	 * pat.setAutoReverse(false); pat.setCycleCount(1);
-	 * pat.setDuration(Duration.millis(controller.getLevelModel().getPathNormalDur()
-	 * ));
-	 * 
-	 * PathTransition pat2 = new PathTransition(); // pat = new PathTransition();
-	 * pat2.setNode(normalBomb.get(i).getCircle()); pat2.setPath(path);
-	 * pat2.setAutoReverse(false); pat2.setCycleCount(1);
-	 * pat2.setDuration(Duration.millis(controller.getLevelModel().getPathNormalDur(
-	 * ))); pat.play(); pat2.play(); }
-	 */
-
+	
 	public void setPath(Sprite e, int dur) {
 		Path path = new Path();
 		QuadCurveTo quadCurve = new QuadCurveTo();
@@ -482,23 +364,29 @@ public class LevelView {
 		if (e.getPositionY() == 500) {
 			x = e.getPositionX();
 			path.getElements().add(new MoveTo(x, 550));
-			/*
-			 * quadCurve.setX(400 + random.nextInt(300)); quadCurve.setY(600);
-			 * quadCurve.setControlX(800); quadCurve.setControlY(50);
-			 */
+			
 			Random r = new Random();
-			CubicCurveTo cb = new CubicCurveTo(0, 400 + r.nextInt(100), 300 + r.nextInt(50), -500, 600 + r.nextInt(100),
-					600);
+			CubicCurveTo cb = new CubicCurveTo(0, 400 + r.nextInt(100), 300 + r.nextInt(50), -500, 600 + r.nextInt(100),	600);
 			path.getElements().add(cb);
-		} else {
+		} else if(e.getPositionX() == 0) {
 			x = e.getPositionY();
 			path.getElements().add(new MoveTo(0, x));
 			quadCurve.setX(400 + random.nextInt(300));
 			quadCurve.setY(600);
-			quadCurve.setControlX(600);
-			quadCurve.setControlY(100);
+			quadCurve.setControlX(500 +random.nextInt(100));
+			quadCurve.setControlY(50 + random.nextInt(50));
 			path.getElements().add(quadCurve);
 
+		}
+		else {
+			x = e.getPositionY();
+			path.getElements().add(new MoveTo(870, x));
+			quadCurve.setX(random.nextInt(200));
+			quadCurve.setY(600);
+			quadCurve.setControlX(500 +random.nextInt(100));
+			quadCurve.setControlY(50 + random.nextInt(50));
+			path.getElements().add(quadCurve);
+			
 		}
 		root.getChildren().add(e.getImage());
 		PathTransition pat = new PathTransition();
@@ -508,15 +396,7 @@ public class LevelView {
 		pat.setAutoReverse(false);
 		pat.setCycleCount(1);
 		pat.setDuration(Duration.millis(dur));
-
-		PathTransition pat2 = new PathTransition();
-		pat2.setNode(e.getCircle());
-		pat2.setPath(path);
-		pat2.setAutoReverse(false);
-		pat2.setCycleCount(1);
-		pat2.setDuration(Duration.millis(dur));
 		pat.play();
-		pat2.play();
 
 	}
 
@@ -530,10 +410,6 @@ public class LevelView {
 
 				mouse.setPosXOfMouse(event.getX());
 				mouse.setPosYOfMouse(event.getY());
-
-				// System.out.println(mouse.getPositionXOfMouse());
-				// System.out.println(mouse.getPositionYOfMouse());
-
 				for (int i = 0; i < objects.size(); i++) {
 					Sprite x = objects.get(i);
 

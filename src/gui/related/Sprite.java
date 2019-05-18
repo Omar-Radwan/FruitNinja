@@ -34,7 +34,7 @@ public class Sprite {
 
 	ImageView img = new ImageView();
 	Random random = new Random();
-	private Circle circle = new Circle();
+//	private Circle circle = new Circle();
 
 	public Sprite() {
 		positionX = 0;
@@ -43,14 +43,17 @@ public class Sprite {
 
 	public Sprite(Image image, int radius, int number) {
 		this.image = image;
+		img.setImage(image);
 		positionX = 0;
 		positionY = 500;
+		img.setY(500);
+		img.setX(0);
 		// circle.setLayoutY(500);
-		circle.setCenterY(500);
+	//	circle.setCenterY(500);
 		width = image.getWidth();
 		height = image.getHeight();
 		// maxHeight = random.nextInt(500) * 0.1 + 200;
-		circle.setRadius(radius);
+	//	circle.setRadius(radius);
 		this.number = number;
 	}
 
@@ -65,8 +68,7 @@ public class Sprite {
 	}
 
 	public void setPositinoX(double positionX) {
-		circle.setCenterX(positionX);
-		this.positionX = circle.getCenterX();
+			img.setX(positionX);
 	}
 
 	public ImageView getImage() {
@@ -79,8 +81,9 @@ public class Sprite {
 
 	public void setPositionY(double positionY) {
 		// circle.setLayoutY(positionY);
-		circle.setCenterY(positionY);
-		this.positionY = circle.getCenterY();
+		//circle.setCenterY(positionY);
+		
+		img.setY(positionY);
 	}
 
 	public void setPosYOfMouse(double positionY) {
@@ -100,44 +103,22 @@ public class Sprite {
 	}
 
 	public double getPositionX() {
-		return circle.getCenterX();
+		return img.getX()+img.getTranslateX();
 	}
 
 	public double getPositionY() {
-		return circle.getCenterY();
+		return img.getY()+img.getTranslateY();
 	}
 
-	public void render(GraphicsContext gc) {
-		gc.drawImage(image, circle.getTranslateX(), circle.getTranslateY());
+	/*public void render(GraphicsContext gc) {
+		gc.drawImage(image, img.getTranslateX()+positionX, img.getTranslateY()+positionY);
 
-	}
+	}*/
 
-	/*
-	 * public void updateLocations() { double newPositionY = positionY
-	 * -LevelType.fruitSpeedY; this.positionX += LevelType.fruitSpeedX; if(direction
-	 * == -1) { if(newPositionY <maxHeight) { direction = 1; this.positionY +=
-	 * LevelType.fruitSpeedY; } else this.positionY -= LevelType.fruitSpeedY; } else
-	 * this.positionY += LevelType.fruitSpeedY; //el mafrod hashof law howa fo2
-	 * hanazelo w law ta7t hazawedo wait for it
-	 * 
-	 * }
-	 */
-	public Circle getCircle() {
-		return circle;
-	}
 
 	private Rectangle2D getBoundary() {
-		return new Rectangle2D(circle.getTranslateX() + positionX, circle.getTranslateY() + positionY, width, height);
+		return new Rectangle2D(img.getTranslateX()+positionX, img.getTranslateY()+positionY, width, height);
 	}
-
-	/*
-	 * public Rectangle rect(GraphicsContext gc) { Rectangle rect = new
-	 * Rectangle(circle.getTranslateX() , circle.getTranslateY() , image.getWidth()
-	 * , image.getHeight());
-	 * 
-	 * 
-	 * return rect; }
-	 */
 	private Rectangle2D getboundaryOfMouse() {
 		return new Rectangle2D(positionX, positionY, width, height);
 
