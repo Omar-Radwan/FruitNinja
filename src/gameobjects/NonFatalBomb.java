@@ -1,10 +1,13 @@
+package gameobjects;
+
 
 public class NonFatalBomb extends Bomb {
 
 	public NonFatalBomb() {
 		super();
+		this.number = 4;
 		isFatal = false;
-		bufferedImages = bufferedImagesFactory.getNonFatalBombImages();
+		images = bufferedImagesFactory.getNonFatalBombImages();
 	}
 
 }
