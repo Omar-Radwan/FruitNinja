@@ -41,6 +41,30 @@ public abstract class GameObject {
 		return isSliced;
 	}
 
+	public boolean isHasMovedOffScreen() {
+		return hasMovedOffScreen;
+	}
+
+	public void setHasMovedOffScreen(boolean hasMovedOffScreen) {
+		this.hasMovedOffScreen = hasMovedOffScreen;
+	}
+
+	public int getRadius() {
+		return radius;
+	}
+
+	public void setRadius(int radius) {
+		this.radius = radius;
+	}
+
+	public void setSliced(boolean isSliced) {
+		this.isSliced = isSliced;
+	}
+
+	public void setImages(Image[] images) {
+		this.images = images;
+	}
+
 	public boolean hasMovedOffScreen() {
 		return hasMovedOffScreen;
 	}
