@@ -348,9 +348,10 @@ public class LevelView {
 
 	public void setImages() {
 
-		GameObject x = controller.getLevelModel().getFruit();
+		GameObject x = controller.getFruit();
 		objects.add(new Sprite(x.getImages()[0], x.radius, x.getNumber()));
 		// mouse.setPic(x.getNumber());
+
 		int j = random.nextInt(2);
 		if (j == 0) {
 			// System.out.println(objects.get(objects.size() -1).getPositionY());
@@ -539,11 +540,11 @@ public class LevelView {
 					if (x.intersects(mouse)) {
 						int number = x.getNumber();
 						Image img2 = new Image("file:src/gui/related/" + types[number] + "sliced.png");
+						x.getImage().setDisable(true);
 						x.setImage(img2);
-						// soundSlicing();
-						setPath(x, pathFruitDur);
-					}
+						controller.sliceFruit(i);
 
+					}
 				}
 
 				for (int i = 0; i < objects.size(); i++) {
@@ -564,7 +565,7 @@ public class LevelView {
 //								GameOverScene(stage);
 //							
 //								else {
-							soundAlert();
+							// soundAlert();
 							System.out.println("fatal bomb" + mouse.getPic());
 
 							live = live - 1;
@@ -628,6 +629,8 @@ public class LevelView {
 		stg.show();
 		soundAlert();
 	}
+
+	// -------------------------------SoundFunctions---------------------------------------------
 
 	protected void GameOverSound() {
 		AudioClip ov = new AudioClip(
