@@ -56,11 +56,13 @@ public class LevelView {
 	private Timeline timeline;
 	private Random random = new Random();
 	private PathTransition pathT;
-
+	private static int CurrScore = 0;
 	protected Sprite mouse = new Sprite();
 	private double indexX, indexY;
 	protected Scene scene;
 	static Integer live = 3;
+	Label currentScore;
+	Label bestScoreLabel;
 //	static int fruitSpeedX;// = 4;
 //	static int fruitSpeedY;// = 3;
 
@@ -133,9 +135,8 @@ public class LevelView {
 
 		// label to current score :
 
-		int currentS = 0;
-		Label currentScore = new Label("Score: " + currentS);
-		Label best = new Label("Best: " + bestScore);
+		currentScore = new Label("Score: " + CurrScore);
+		 bestScoreLabel = new Label("Best: " + bestScore);
 
 		timerLabel.setText(timeSeconds.toString());
 		timerLabel.setTextFill(Color.RED);
@@ -196,7 +197,7 @@ public class LevelView {
 		repeatingnormalBomb();
 		repeatSpecialFruit();
 		VBox vb = new VBox(10);
-		vb.getChildren().addAll(currentScore, best);
+		vb.getChildren().addAll(currentScore, bestScoreLabel);
 		root.getChildren().addAll(vb, timerLabel);
 		scene = new Scene(root, 800, 500);
 		Image mouse = new Image("file:src/gui/related/knife.png");
@@ -411,13 +412,13 @@ public class LevelView {
 
 				for (int i = 0; i < objects.size(); i++) {
 					Sprite x = objects.get(i);
+					
 					if (x.intersects(mouse)) {
 						int number = x.getNumber();
 						Image img2 = new Image("file:src/gui/related/" + types[number] + "sliced.png");
 						x.getImage().setDisable(true);
 						x.setImage(img2);
 						controller.sliceFruit(i);
-
 					}
 				}
 
@@ -442,7 +443,7 @@ public class LevelView {
 							// soundAlert();
 							System.out.println("fatal bomb" + mouse.getPic());
 
-							live = live - 1;
+							live--;
 							label2.setText(live.toString());
 
 							// }
@@ -507,7 +508,7 @@ public class LevelView {
 	// --------------------------------Controller Related
 	// Functions-------------------------------------
 	public void updateScore(int value) {
-
+		currentScore.setText("score: " + value);
 	}
 
 	public void endGame() {
