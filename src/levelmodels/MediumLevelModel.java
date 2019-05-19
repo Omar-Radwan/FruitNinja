@@ -9,6 +9,6 @@ public class MediumLevelModel extends LevelModel {
 		pathFruitDur = 3000;
 		pathFatalDur = 3000;
 		pathNormalDur = 3000;
-
+		
 	}
 }

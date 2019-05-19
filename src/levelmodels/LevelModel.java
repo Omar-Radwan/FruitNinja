@@ -1,14 +1,11 @@
 package levelmodels;
 
+import java.util.ArrayList;
 import java.util.Random;
 
-import gameobjects.Apple;
-import gameobjects.Banana;
-import gameobjects.FatalBomb;
+import factories.ObjectFactory;
+import gameobjects.Fruit;
 import gameobjects.GameObject;
-import gameobjects.NonFatalBomb;
-import gameobjects.SpecialBanana;
-import gameobjects.Watermelon;
 
 public abstract class LevelModel {
 
@@ -20,33 +17,51 @@ public abstract class LevelModel {
 	protected int pathFatalDur;
 	protected int pathNormalDur;
 
+	protected int lives;
+	protected int score;
+
+	protected ArrayList<GameObject> fruits;
+	protected ArrayList<GameObject> specialFruits;
+
+	protected ObjectFactory objectFactory = ObjectFactory.getInstance();
+
 	public LevelModel() {
-
+		lives = 3;
+		score = 0;
+		fruits = new ArrayList<GameObject>();
+		specialFruits = new ArrayList<GameObject>();
 	}
 
-	public GameObject getFruit() {
-		int i = r.nextInt(3);
-		System.out.println(i);
-		if (i == 0)
-			return new Banana();
-		else if (i == 1) {
-			return new Apple();
-		}
-
-		else
-			return new Watermelon();
+	public int getLives() {
+		return lives;
 	}
 
-	public GameObject getSpecialFruit() {
-		return new SpecialBanana();
+	public void setLives(int lives) {
+		this.lives = lives;
 	}
 
-	public GameObject getNormalBomb() {
-		return new NonFatalBomb();
+	public int getScore() {
+		return score;
 	}
 
-	public GameObject getFatalBomb() {
-		return new FatalBomb();
+	public void setScore(int score) {
+		this.score = score;
+	}
+
+	public ArrayList<GameObject> getFruits() {
+		return fruits;
+	}
+
+	public void setFruits(ArrayList<GameObject> fruits) {
+		this.fruits = fruits;
+	}
+
+	public ArrayList<GameObject> getSpecialFruits() {
+		return specialFruits;
+	}
+
+	public void setSpecialFruits(ArrayList<GameObject> specialFruits) {
+		this.specialFruits = specialFruits;
 	}
 
 	public Random getR() {
@@ -105,4 +120,65 @@ public abstract class LevelModel {
 		this.pathNormalDur = pathNormalDur;
 	}
 
+	// ------------------------------------msh getters w
+	// setters----------------------------------------------------------
+	public void sliceFruit(int indx) {
+		Fruit fruit = (Fruit) fruits.get(indx);
+		if (!fruit.isSliced()) {
+			fruit.slice();
+			score += fruit.getScore();
+		}
+	}
+
+	public GameObject getRandomFruit() {
+
+		int i = r.nextInt(3);
+
+		GameObject x = null;
+
+		if (i == 0)
+			x = objectFactory.getGameObject("banana");
+		else if (i == 1) {
+			x = objectFactory.getGameObject("apple");
+		} else
+			x = objectFactory.getGameObject("watermelon");
+		fruits.add(x);
+
+		return x;
+	}
+
+	// eb2a 8aiar al asamy bta3t al special fruits hna
+	public GameObject getRandomSpecialFruit() {
+		int i = r.nextInt(2);
+
+		GameObject x = null;
+
+		if (i == 0) {
+			x = objectFactory.getGameObject("apple");
+		} else {
+			x = objectFactory.getGameObject("banana");
+		}
+		return x;
+
+	}
+
+	public GameObject getNonFatalBomb() {
+		return objectFactory.getGameObject("nonfatalbomb");
+	}
+
+	public GameObject getFatalBomb() {
+		return objectFactory.getGameObject("fatalbomb");
+	}
+
+	public void sliceSpecialFruit(int indx) {
+		Fruit fruit = (Fruit) specialFruits.get(indx);
+		if (!fruit.isSliced()) {
+			fruit.slice();
+			score += fruit.getScore();
+		}
+	}
+
+	public void decreaseLives() {
+		lives--;
+	}
 }

@@ -106,9 +106,10 @@ public class HomeScreen {
 	}
 
 	private void createNewLevel(LevelModel levelModel) {
-		controller.setLeveModel(levelModel);
+		controller.setLevelModel(levelModel);
 		level = new LevelView(controller, stage);
 		controller.setLevelView(level);
+
 	}
 
 }

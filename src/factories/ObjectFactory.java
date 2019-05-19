@@ -1,4 +1,5 @@
 package factories;
+
 import gameobjects.Apple;
 import gameobjects.Banana;
 import gameobjects.FatalBomb;
@@ -9,6 +10,20 @@ import gameobjects.SpecialMango;
 import gameobjects.Watermelon;
 
 public class ObjectFactory {
+
+	static ObjectFactory instance;
+
+	private ObjectFactory() {
+
+	}
+
+	public static ObjectFactory getInstance() {
+		if (instance != null) {
+			return instance;
+		}
+		return new ObjectFactory();
+	}
+
 	public GameObject getGameObject(String gameObject) {
 		if (gameObject.equalsIgnoreCase("Apple"))
 			return new Apple();
@@ -24,6 +39,7 @@ public class ObjectFactory {
 			return new FatalBomb();
 		else if (gameObject.equalsIgnoreCase("NonFatalBomb"))
 			return new NonFatalBomb();
-		else return null;
+		else
+			return null;
 	}
 }

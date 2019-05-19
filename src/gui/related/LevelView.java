@@ -65,11 +65,14 @@ public class LevelView {
 //	static int fruitSpeedY;// = 3;
 
 	private Image background = new Image("file:src/gui/related/background.jpg");
+
 	public Controller controller;
+
 	private ArrayList<Sprite> objects = new ArrayList<Sprite>();
 	private ArrayList<Sprite> fatalBomb = new ArrayList<Sprite>();
 	private ArrayList<Sprite> normalBomb = new ArrayList<Sprite>();
 	private ArrayList<Sprite> specialFruit = new ArrayList<Sprite>();
+
 	private Stage stage;
 	private String[] types;
 
@@ -118,11 +121,11 @@ public class LevelView {
 
 	public void level() {
 
-		fataBombDur = controller.getLevelModel().getPathFatalDur();
+		fataBombDur = controller.getPathFatalDur();
 
-		normalBombDur = controller.getLevelModel().getPathNormalDur();
+		normalBombDur = controller.getPathNormalDur();
 
-		pathFruitDur = controller.getLevelModel().getPathFruitDur();
+		pathFruitDur = controller.getPathFruitDur();
 
 		root.getChildren().add(canvas);
 		gc = canvas.getGraphicsContext2D();
@@ -137,7 +140,7 @@ public class LevelView {
 		timerLabel.setText(timeSeconds.toString());
 		timerLabel.setTextFill(Color.RED);
 		timerLabel.setStyle("-fx-font-size: 4em;");
-		timerLabel.setLayoutX(750);
+		timerLabel.setLayoutX(650);
 		timerLabel.setLayoutY(0);
 		timeSeconds = StartTime;
 		timeline = new Timeline();
@@ -219,7 +222,7 @@ public class LevelView {
 	}
 
 	public void setSpecialFruit() {
-		GameObject x = controller.getLevelModel().getSpecialFruit();
+		GameObject x = controller.getSpecialFruit();
 		specialFruit.add(new Sprite(x.getImages()[0], x.radius, x.getNumber()));
 		Random r = new Random();
 		specialFruit.get(specialFruit.size() - 1).setPositinoX(r.nextInt(700) + 10);
@@ -246,7 +249,7 @@ public class LevelView {
 	}
 
 	public void setFatalBomb() {
-		GameObject x = controller.getLevelModel().getFatalBomb();
+		GameObject x = controller.getFatalBomb();
 		fatalBomb.add(new Sprite(x.getImages()[0], x.radius, x.getNumber()));
 		mouse.setPic(3);
 		int j = random.nextInt(2);
@@ -261,15 +264,14 @@ public class LevelView {
 	}
 
 	public void repeatingfatalBomb() {
-		Timeline timeline = new Timeline(
-				new KeyFrame(new Duration(controller.getLevelModel().getFataldur()), new EventHandler() {
-					@Override
-					public void handle(Event event) {
-						setFatalBomb();
-						// setPathOfFatalBombs(fatalBombs - 1);
-						setPath(fatalBomb.get(fatalBombs - 1), fataBombDur);
-					}
-				}));
+		Timeline timeline = new Timeline(new KeyFrame(new Duration(controller.getFataldur()), new EventHandler() {
+			@Override
+			public void handle(Event event) {
+				setFatalBomb();
+				// setPathOfFatalBombs(fatalBombs - 1);
+				setPath(fatalBomb.get(fatalBombs - 1), fataBombDur);
+			}
+		}));
 
 		timeline.setCycleCount(Animation.INDEFINITE);
 		timeline.setAutoReverse(true);
@@ -277,7 +279,7 @@ public class LevelView {
 	}
 
 	public void setNormalBomb() {
-		GameObject x = controller.getLevelModel().getNormalBomb();
+		GameObject x = controller.getNonFatalBomb();
 		mouse.setPic(4);
 		normalBomb.add(new Sprite(x.getImages()[0], x.radius, x.getNumber()));
 
@@ -294,14 +296,13 @@ public class LevelView {
 	}
 
 	public void repeatingnormalBomb() {
-		Timeline timeline = new Timeline(
-				new KeyFrame(new Duration(controller.getLevelModel().getNormaldur()), new EventHandler() {
-					@Override
-					public void handle(Event event) {
-						setNormalBomb();
-						setPath(normalBomb.get(normalBombs - 1), normalBombDur);
-					}
-				}));
+		Timeline timeline = new Timeline(new KeyFrame(new Duration(controller.getNormaldur()), new EventHandler() {
+			@Override
+			public void handle(Event event) {
+				setNormalBomb();
+				setPath(normalBomb.get(normalBombs - 1), normalBombDur);
+			}
+		}));
 
 		timeline.setCycleCount(Animation.INDEFINITE);
 		timeline.setAutoReverse(true);
@@ -310,14 +311,13 @@ public class LevelView {
 
 	public void repeatingImage() {
 
-		Timeline timeline = new Timeline(
-				new KeyFrame(new Duration(controller.getLevelModel().getRepeatDur()), new EventHandler() {
-					@Override
-					public void handle(Event event) {
-						setImages();
-						setPath(objects.get(objectsNumb - 1), pathFruitDur);
-					}
-				}));
+		Timeline timeline = new Timeline(new KeyFrame(new Duration(controller.getRepeatDur()), new EventHandler() {
+			@Override
+			public void handle(Event event) {
+				setFruits();
+				setPath(objects.get(objectsNumb - 1), pathFruitDur);
+			}
+		}));
 
 		timeline.setCycleCount(Animation.INDEFINITE);
 		timeline.setAutoReverse(true);
@@ -325,24 +325,23 @@ public class LevelView {
 
 	}
 
-
-	public void setImages() {
+	public void setFruits() {
 
 		GameObject x = controller.getFruit();
 		objects.add(new Sprite(x.getImages()[0], x.radius, x.getNumber()));
 
 		int j = random.nextInt(2);
+
 		if (j == 0) {
 			setPositionX(objects.get(objects.size() - 1));
 		} else if (j == 1) {
 			setPositionY(objects.get(objects.size() - 1));
 		}
+
 		objectsNumb++;
 	}
 
-	
 	public void setPositionX(Sprite e) {
-		
 		e.setPositinoX(random.nextInt(200));
 	}
 
@@ -350,13 +349,12 @@ public class LevelView {
 		e.setPositionY(random.nextInt(200));
 		Random r = new Random();
 		int y = r.nextInt(2);
-		if(y == 0)
-		e.setPositinoX(0);
-		else 
+		if (y == 0)
+			e.setPositinoX(0);
+		else
 			e.setPositinoX(870);
 	}
 
-	
 	public void setPath(Sprite e, int dur) {
 		Path path = new Path();
 		QuadCurveTo quadCurve = new QuadCurveTo();
@@ -364,29 +362,29 @@ public class LevelView {
 		if (e.getPositionY() == 500) {
 			x = e.getPositionX();
 			path.getElements().add(new MoveTo(x, 550));
-			
+
 			Random r = new Random();
-			CubicCurveTo cb = new CubicCurveTo(0, 400 + r.nextInt(100), 300 + r.nextInt(50), -500, 600 + r.nextInt(100),	600);
+			CubicCurveTo cb = new CubicCurveTo(0, 400 + r.nextInt(100), 300 + r.nextInt(50), -500, 600 + r.nextInt(100),
+					600);
 			path.getElements().add(cb);
-		} else if(e.getPositionX() == 0) {
+		} else if (e.getPositionX() == 0) {
 			x = e.getPositionY();
 			path.getElements().add(new MoveTo(0, x));
 			quadCurve.setX(400 + random.nextInt(300));
 			quadCurve.setY(600);
-			quadCurve.setControlX(500 +random.nextInt(100));
+			quadCurve.setControlX(500 + random.nextInt(100));
 			quadCurve.setControlY(50 + random.nextInt(50));
 			path.getElements().add(quadCurve);
 
-		}
-		else {
+		} else {
 			x = e.getPositionY();
 			path.getElements().add(new MoveTo(870, x));
 			quadCurve.setX(random.nextInt(200));
 			quadCurve.setY(600);
-			quadCurve.setControlX(500 +random.nextInt(100));
+			quadCurve.setControlX(500 + random.nextInt(100));
 			quadCurve.setControlY(50 + random.nextInt(50));
 			path.getElements().add(quadCurve);
-			
+
 		}
 		root.getChildren().add(e.getImage());
 		PathTransition pat = new PathTransition();
@@ -410,9 +408,9 @@ public class LevelView {
 
 				mouse.setPosXOfMouse(event.getX());
 				mouse.setPosYOfMouse(event.getY());
+
 				for (int i = 0; i < objects.size(); i++) {
 					Sprite x = objects.get(i);
-
 					if (x.intersects(mouse)) {
 						int number = x.getNumber();
 						Image img2 = new Image("file:src/gui/related/" + types[number] + "sliced.png");
@@ -504,6 +502,24 @@ public class LevelView {
 		stg.setScene(scene);
 		stg.show();
 		soundAlert();
+	}
+
+	// --------------------------------Controller Related
+	// Functions-------------------------------------
+	public void updateScore(int value) {
+
+	}
+
+	public void endGame() {
+
+	}
+
+	public void updateLives() {
+
+	}
+
+	public void objectOutOfTheScreen() {
+
 	}
 
 	// -------------------------------SoundFunctions---------------------------------------------

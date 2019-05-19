@@ -1,6 +1,5 @@
 package gameobjects;
 
-
 import factories.ImagesFactory;
 import javafx.scene.image.Image;
 

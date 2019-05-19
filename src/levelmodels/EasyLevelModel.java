@@ -10,5 +10,4 @@ public class EasyLevelModel extends LevelModel {
 		pathFatalDur = 3000;
 		pathNormalDur = 3000;
 	}
-	
 }
