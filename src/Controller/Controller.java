@@ -1,5 +1,6 @@
 package Controller;
 
+import gameobjects.Fruit;
 import gameobjects.GameObject;
 import gui.related.LevelView;
 import levelmodels.LevelModel;
@@ -12,6 +13,7 @@ public class Controller implements IController {
 	public Controller(LevelModel levelModel, LevelView levelView) {
 		this.levelModel = levelModel;
 		this.levelView = levelView;
+
 	}
 
 	public Controller() {
@@ -53,7 +55,7 @@ public class Controller implements IController {
 		levelModel.sliceFruit(indx);
 		levelView.updateScore(levelModel.getScore());
 		levelView.updateBestScore(levelModel.getBestScore());
-		
+
 	}
 
 	public void sliceSpecialFruit(int indx) {
@@ -66,9 +68,15 @@ public class Controller implements IController {
 	public void sliceFatalBomb() {
 		levelView.GameOverScene();
 	}
-	public void checkIfIsSliced(int index) {
-		
+
+	public void checkIfIsSliced(int indx) {
+		Fruit fruit = (Fruit) levelModel.getFruits().get(indx);
+		if (!fruit.isSliced()) {
+			levelModel.decreaseLives();
+		}
+		levelView.updateLives(levelModel.getLives());
 	}
+
 	public void sliceNonFatalBomb(int indx) {
 		levelModel.sliceNonFatalBomb(indx);
 		if (levelModel.getLives() <= 0) {
