@@ -61,13 +61,13 @@ public class Controller implements IController {
 	}
 
 	public void sliceFatalBomb() {
-		levelView.endGame();
+		levelView.GameOverScene();
 	}
 
 	public void sliceNonFatalBomb(int indx) {
 		levelModel.sliceNonFatalBomb(indx);
 		if (levelModel.getLives() <= 0) {
-			levelView.endGame();
+			levelView.GameOverScene();
 		}
 	}
 

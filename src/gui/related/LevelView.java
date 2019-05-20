@@ -535,7 +535,7 @@ public class LevelView {
 
 	}
 
-	public void endGame() {
+	public void GameOverScene() {
 
 	}
 
