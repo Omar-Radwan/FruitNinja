@@ -444,8 +444,12 @@ public class LevelView {
 						x.setImage(img2);
 						controller.sliceFruit(i);
 
-					} else if (x.getPositionY() == 600)
+					}
+
+					else if (x.getPositionY() == 600) {
 						controller.checkIfIsSliced(i);
+
+					}
 				}
 
 				for (int i = 0; i < specialFruit.size(); i++) {
@@ -555,8 +559,8 @@ public class LevelView {
 	// -------------------------------SoundFunctions---------------------------------------------
 
 	protected void GameOverSound() {
-		AudioClip ov = new AudioClip(
-				this.getClass().getResource("zapsplat_human_male_laugh_snigger_closed_mouth_002_15992.mp3").toString());
+		AudioClip ov = new AudioClip(this.getClass()
+				.getResource("src/zapsplat_human_male_laugh_snigger_closed_mouth_002_15992.mp3").toString());
 		ov.play();
 	}
 
