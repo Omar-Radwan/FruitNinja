@@ -137,6 +137,8 @@ public class LevelView {
 
 		currentScore = new Label("Score: " + CurrScore);
 		 bestScoreLabel = new Label("Best: " + bestScore);
+			setLabel(currentScore);
+			setLabel(bestScoreLabel);
 
 		timerLabel.setText(timeSeconds.toString());
 		timerLabel.setTextFill(Color.RED);
@@ -181,10 +183,11 @@ public class LevelView {
 
 		Image image2 = new Image("file:src/gui/related/animated-heart-image-0503.gif", 40, 40, false, false);
 		label2.setText(live.toString());
-		Color c1 = Color.RED;
+		/*Color c1 = Color.RED;
 		label2.setTextFill(c1);
 		label2.setFont(Font.font("Verdana", FontWeight.BOLD, 30));
-
+*/
+		setLabel(label2);
 		label2.setGraphic(new ImageView(image2));
 		/*
 		 * grid.add(label2, 1, 0); GridPane.setHalignment(label2,HPos.RIGHT);
@@ -204,6 +207,12 @@ public class LevelView {
 		scene.setCursor(new ImageCursor(mouse));
 		stage.setScene(scene);
 		cut(stage);
+
+	}
+	private void setLabel(Label label) {
+		Color c1 = Color.RED;
+		label.setTextFill(c1);
+		label.setFont(Font.font("Verdana", FontWeight.BOLD, 30));
 
 	}
 
