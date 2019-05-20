@@ -109,7 +109,7 @@ public class HomeScreen {
 		controller.setLevelModel(levelModel);
 		level = new LevelView(controller, stage);
 		controller.setLevelView(level);
-		
+
 	}
 
 }

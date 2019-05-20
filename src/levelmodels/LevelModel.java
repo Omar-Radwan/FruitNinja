@@ -46,9 +46,8 @@ public abstract class LevelModel {
 		fruits = new ArrayList<GameObject>();
 		specialFruits = new ArrayList<GameObject>();
 		nonFatalBombs = new ArrayList<GameObject>();
-
 		isDoubleScore = false;
-		loadBestScore();
+		
 	}
 
 	public ArrayList<GameObject> getNonFatalBombs() {
@@ -226,7 +225,6 @@ public abstract class LevelModel {
 
 			if (score > bestScore) {
 				bestScore = score;
-				saveBestScore();
 			}
 		}
 
