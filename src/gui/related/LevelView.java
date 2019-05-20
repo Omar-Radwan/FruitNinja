@@ -121,7 +121,7 @@ public class LevelView {
 	static int normalBombDur;
 
 	static int pathFruitDur;
-	Label label2 = new Label();
+	Label livesLabel = new Label();
 
 	public void level() {
 
@@ -138,9 +138,9 @@ public class LevelView {
 		// label to current score :
 
 		currentScore = new Label("Score: " + CurrScore);
-		 bestScoreLabel = new Label("Best: " + bestScore);
-			setLabel(currentScore);
-			setLabel(bestScoreLabel);
+		bestScoreLabel = new Label("Best: " + bestScore);
+		setLabel(currentScore);
+		setLabel(bestScoreLabel);
 
 		timerLabel.setText(timeSeconds.toString());
 		timerLabel.setTextFill(Color.RED);
@@ -184,19 +184,19 @@ public class LevelView {
 		 */
 
 		Image image2 = new Image("file:src/gui/related/animated-heart-image-0503.gif", 40, 40, false, false);
-		label2.setText(live.toString());
-		/*Color c1 = Color.RED;
-		label2.setTextFill(c1);
-		label2.setFont(Font.font("Verdana", FontWeight.BOLD, 30));
-*/
-		setLabel(label2);
-		label2.setGraphic(new ImageView(image2));
+		livesLabel.setText(live.toString());
+		/*
+		 * Color c1 = Color.RED; label2.setTextFill(c1);
+		 * label2.setFont(Font.font("Verdana", FontWeight.BOLD, 30));
+		 */
+		setLabel(livesLabel);
+		livesLabel.setGraphic(new ImageView(image2));
 		/*
 		 * grid.add(label2, 1, 0); GridPane.setHalignment(label2,HPos.RIGHT);
 		 */
-		label2.setLayoutX(720);
-		label2.setLayoutY(70);
-		root.getChildren().add(label2);
+		livesLabel.setLayoutX(720);
+		livesLabel.setLayoutY(70);
+		root.getChildren().add(livesLabel);
 		repeatingImage();
 		repeatingfatalBomb();
 		repeatingnormalBomb();
@@ -211,6 +211,7 @@ public class LevelView {
 		cut(stage);
 
 	}
+
 	private void setLabel(Label label) {
 		Color c1 = Color.RED;
 		label.setTextFill(c1);
@@ -409,26 +410,19 @@ public class LevelView {
 		pat.play();
 
 	}
-	int time;
-	/*public void timeDoubleStop() {
-		Timeline tl = new Timeline(new KeyFrame(new Duration(1000), new EventHandler() {
 
-			@Override
-			public void handle(Event arg0) {
-				int alo = timeSeconds;
-				System.out.println(alo);
-				if(alo >= time) {
-					System.out.println("FU");
-					controller.endDoubleScore();
-				}
-					
-			}
-		}));
-		timeline.setCycleCount(Animation.INDEFINITE);
-		timeline.setAutoReverse(true);
-		timeline.play();
-	}*/
-	
+	int time;
+	/*
+	 * public void timeDoubleStop() { Timeline tl = new Timeline(new KeyFrame(new
+	 * Duration(1000), new EventHandler() {
+	 * 
+	 * @Override public void handle(Event arg0) { int alo = timeSeconds;
+	 * System.out.println(alo); if(alo >= time) { System.out.println("FU");
+	 * controller.endDoubleScore(); }
+	 * 
+	 * } })); timeline.setCycleCount(Animation.INDEFINITE);
+	 * timeline.setAutoReverse(true); timeline.play(); }
+	 */
 
 	public void cut(Stage stage) {
 		scene.setOnMouseMoved(new EventHandler<MouseEvent>() {
@@ -449,68 +443,54 @@ public class LevelView {
 						x.getImage().setDisable(true);
 						x.setImage(img2);
 						controller.sliceFruit(i);
-						
-					}
-					else if(x.getPositionY() == 600)
+
+					} else if (x.getPositionY() == 600)
 						controller.checkIfIsSliced(i);
 				}
 
 				for (int i = 0; i < specialFruit.size(); i++) {
 					Sprite x = specialFruit.get(i);
-					if(x.intersects(mouse)) {
+					if (x.intersects(mouse)) {
 						int number = x.getNumber();
 						Image img2 = new Image("file:src/gui/related/sliced" + types[number] + ".png");
 						x.getImage().setDisable(true);
 						x.setImage(img2);
 						controller.sliceSpecialFruit(i);
-						 time = timeSeconds+4;
-				/*		 System.out.println();
-						 System.out.println(time);*/
-						
-						
+						time = timeSeconds + 4;
+						/*
+						 * System.out.println(); System.out.println(time);
+						 */
+
 					}
-					
+
 				}
-					for (int j = 0; j < normalBomb.size(); j++)
-						if (normalBomb.get(j).intersects(mouse)) {
-							mouse.getPositionX();
-							GameOverScene(stage);
-						}
-
-					for (int k = 0; k < fatalBomb.size(); k++)
-						if (fatalBomb.get(k).intersects(mouse)) {
-							mouse.getPositionX();
-							mouse.getPositionY();
-							System.out.println(live);
-//								if(live == 0)
-//								GameOverScene(stage);
-//							
-//								else {
-							// soundAlert();
-							System.out.println("fatal bomb" + mouse.getPic());
-
-							live--;
-							label2.setText(live.toString());
-
-							// }
-
-						}
-				//}
-					int x = timeSeconds;
-					if(x>=time) {
-						controller.endDoubleScore();
+				for (int j = 0; j < normalBomb.size(); j++) {
+					if (normalBomb.get(j).intersects(mouse)) {
+						controller.sliceNonFatalBomb(j);
 					}
+				}
+
+				for (int k = 0; k < fatalBomb.size(); k++) {
+					if (fatalBomb.get(k).intersects(mouse)) {
+
+						controller.sliceFatalBomb();
+
+					}
+				}
+
+				// }
+				int x = timeSeconds;
+				if (x >= time) {
+					controller.endDoubleScore();
+				}
 
 			}
-			
 
 		});
-		
-			
-		
+
 	}
 
-	private void GameOverScene(Stage stage) {
+	public void GameOverScene() {
 		Text GO = new Text("GAME OVER");
 		Font f = Font.font("Castellar", FontWeight.BOLD, FontPosture.REGULAR, 100);
 		GO.setFill(Color.RED);
@@ -565,15 +545,11 @@ public class LevelView {
 	}
 
 	public void updateBestScore(int value) {
-	bestScoreLabel.setText("best :" + value);
-	}
-
-	public void GameOverScene() {
-
+		bestScoreLabel.setText("best :" + value);
 	}
 
 	public void updateLives(int value) {
-
+		livesLabel.setText(Integer.toString(value));
 	}
 
 	// -------------------------------SoundFunctions---------------------------------------------

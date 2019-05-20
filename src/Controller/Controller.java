@@ -70,11 +70,11 @@ public class Controller implements IController {
 		
 	}
 	public void sliceNonFatalBomb(int indx) {
-		levelView.updateLives(levelModel.getLives());
 		levelModel.sliceNonFatalBomb(indx);
 		if (levelModel.getLives() <= 0) {
 			levelView.GameOverScene();
 		}
+		levelView.updateLives(levelModel.getLives());
 	}
 
 	/*
