@@ -52,6 +52,7 @@ public class Controller implements IController {
 	public void sliceFruit(int indx) {
 		levelModel.sliceFruit(indx);
 		levelView.updateScore(levelModel.getScore());
+		levelView.updateBestScore(levelModel.getBestScore());
 	}
 
 	public void sliceSpecialFruit(int indx) {
