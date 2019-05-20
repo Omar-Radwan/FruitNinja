@@ -1,4 +1,5 @@
 package levelmodels;
+
 public class MediumLevelModel extends LevelModel {
 
 	public MediumLevelModel() {
@@ -9,6 +10,6 @@ public class MediumLevelModel extends LevelModel {
 		pathFruitDur = 3000;
 		pathFatalDur = 3000;
 		pathNormalDur = 3000;
-		
+		fileName = "mediumscore.txt";
 	}
 }
