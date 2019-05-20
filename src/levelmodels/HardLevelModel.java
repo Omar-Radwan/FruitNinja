@@ -8,5 +8,6 @@ public class HardLevelModel extends LevelModel {
 		pathFruitDur = 2000;
 		pathFatalDur = 1000;
 		pathNormalDur = 2000;
+		fileName = "hardscore.txt";
 	}
 }

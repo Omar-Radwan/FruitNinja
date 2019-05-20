@@ -9,5 +9,6 @@ public class EasyLevelModel extends LevelModel {
 		pathFruitDur = 3000;
 		pathFatalDur = 3000;
 		pathNormalDur = 3000;
+		fileName = "easyscore.txt";
 	}
 }

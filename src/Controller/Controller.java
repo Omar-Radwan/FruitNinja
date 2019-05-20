@@ -90,7 +90,10 @@ public class Controller implements IController {
 	public void checkIfIsSliced(int indx) {
 		Fruit fruit = (Fruit) levelModel.getFruits().get(indx);
 		if (!fruit.isSliced()) {
-			commandsMap.get("decreaselives").execute();
+			commandsMap.get("decreaseLives").execute();
+		}
+		if (levelModel.getLives() <= 0) {
+			levelView.GameOverScene();
 		}
 		levelView.updateLives(levelModel.getLives());
 	}

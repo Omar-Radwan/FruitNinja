@@ -40,6 +40,8 @@ public abstract class LevelModel {
 	protected boolean isDoubleScore;
 	protected ObjectFactory objectFactory = ObjectFactory.getInstance();
 
+	protected String fileName;
+
 	public LevelModel() {
 		lives = 3;
 		score = 0;
@@ -47,7 +49,7 @@ public abstract class LevelModel {
 		specialFruits = new ArrayList<GameObject>();
 		nonFatalBombs = new ArrayList<GameObject>();
 		isDoubleScore = false;
-		
+
 	}
 
 	public ArrayList<GameObject> getNonFatalBombs() {
@@ -261,7 +263,7 @@ public abstract class LevelModel {
 
 	public void loadBestScore() {
 		try {
-			BufferedReader bufferedReader = new BufferedReader(new FileReader(new File("score.txt")));
+			BufferedReader bufferedReader = new BufferedReader(new FileReader(new File(fileName)));
 			StringTokenizer st;
 			try {
 				st = new StringTokenizer(bufferedReader.readLine());
@@ -278,7 +280,7 @@ public abstract class LevelModel {
 
 	public void saveBestScore() {
 		try {
-			BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(new File("score.txt")));
+			BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(new File(fileName)));
 			bufferedWriter.write(Integer.toString(bestScore));
 			bufferedWriter.flush();
 		} catch (IOException e) {
