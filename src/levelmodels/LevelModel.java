@@ -249,6 +249,7 @@ public abstract class LevelModel {
 		if (!bomb.isSliced()) {
 			bomb.slice();
 			lives--;
+			System.out.println(lives);
 		}
 	}
 
