@@ -568,7 +568,7 @@ public class LevelView {
 	bestScoreLabel.setText("best :" + value);
 	}
 
-	public void endGame() {
+	public void GameOverScene() {
 
 	}
 

@@ -64,7 +64,7 @@ public class Controller implements IController {
 	}
 
 	public void sliceFatalBomb() {
-		levelView.endGame();
+		levelView.GameOverScene();
 	}
 	public void checkIfIsSliced(int index) {
 		
@@ -73,7 +73,7 @@ public class Controller implements IController {
 		levelView.updateLives(levelModel.getLives());
 		levelModel.sliceNonFatalBomb(indx);
 		if (levelModel.getLives() <= 0) {
-			levelView.endGame();
+			levelView.GameOverScene();
 		}
 	}
 
