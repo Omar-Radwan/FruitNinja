@@ -7,7 +7,6 @@ import java.util.Random;
 import Controller.Controller;
 import Controller.IController;
 import gameobjects.GameObject;
-import gameobjects.IGameObject;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.PathTransition;
@@ -415,7 +414,7 @@ public class LevelView {
 
 			@Override
 			public void handle(ActionEvent event) {
-				if(e.getImage().isDisabled() == false)
+				if(e.getImage().isDisabled() == false && e.getNumber()!=3 && e.getNumber()!=4)
 				controller.checkIfIsSliced(objectsNumb-1);
 			}
 		});
@@ -471,6 +470,10 @@ public class LevelView {
 				for (int j = 0; j < normalBomb.size(); j++) {
 					if (normalBomb.get(j).intersects(mouse)) {
 						controller.sliceNonFatalBomb(j);
+						Image img2 = new Image("file:src/gui/related/boooomb.png", 80, 80, false, false);
+						normalBomb.get(j).getImage().setDisable(true);
+						normalBomb.get(j).setImage(img2);
+
 					}
 				}
 
