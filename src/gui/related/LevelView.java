@@ -470,6 +470,10 @@ public class LevelView {
 				for (int j = 0; j < normalBomb.size(); j++) {
 					if (normalBomb.get(j).intersects(mouse)) {
 						controller.sliceNonFatalBomb(j);
+						Image img2 = new Image("file:src/gui/related/boooomb.png", 80, 80, false, false);
+						normalBomb.get(j).getImage().setDisable(true);
+						normalBomb.get(j).setImage(img2);
+
 					}
 				}
 
