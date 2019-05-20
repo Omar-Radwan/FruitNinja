@@ -194,6 +194,7 @@ public abstract class LevelModel {
 		} else {
 			x = objectFactory.getGameObject("banana");
 		}
+		specialFruits.add(x);
 		return x;
 
 	}
