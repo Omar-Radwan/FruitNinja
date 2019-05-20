@@ -1,6 +1,7 @@
 package gui.related;
 
 import Controller.Controller;
+import Controller.IController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -16,22 +17,23 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import levelmodels.EasyLevelModel;
 import levelmodels.HardLevelModel;
+import levelmodels.ILevelModel;
 import levelmodels.LevelModel;
 import levelmodels.MediumLevelModel;
 
 public class HomeScreen {
 	private Stage stage;
-	private Controller controller;
+	private IController controller;
 
 	public HomeScreen() {
 
 	}
 
-	public Controller getController() {
+	public IController getController() {
 		return controller;
 	}
 
-	public void setController(Controller controller) {
+	public void setController(IController controller) {
 		this.controller = controller;
 	}
 
@@ -105,7 +107,7 @@ public class HomeScreen {
 		stage.setScene(scene);
 	}
 
-	private void createNewLevel(LevelModel levelModel) {
+	private void createNewLevel(ILevelModel levelModel) {
 		controller.setLevelModel(levelModel);
 		level = new LevelView(controller, stage);
 		controller.setLevelView(level);

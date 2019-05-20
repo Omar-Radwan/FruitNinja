@@ -2,6 +2,7 @@ package Controller;
 
 import gameobjects.GameObject;
 import gui.related.LevelView;
+import levelmodels.ILevelModel;
 import levelmodels.LevelModel;
 
 public interface IController {
@@ -32,7 +33,7 @@ public interface IController {
 
 	public void setLevelView(LevelView levelView);
 
-	public void setLevelModel(LevelModel levelModel);
+	public void setLevelModel(ILevelModel levelModel);
 
 	public GameObject getFruit();
 

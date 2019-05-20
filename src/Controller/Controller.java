@@ -10,15 +10,16 @@ import command.SaveBestScoreCommand;
 import gameobjects.Fruit;
 import gameobjects.GameObject;
 import gui.related.LevelView;
+import levelmodels.ILevelModel;
 import levelmodels.LevelModel;
 
 public class Controller implements IController {
 
-	protected LevelModel levelModel;
+	protected ILevelModel levelModel;
 	protected LevelView levelView;
 	protected HashMap<String, Command> commandsMap;
 
-	public Controller(LevelModel levelModel, LevelView levelView) {
+	public Controller(ILevelModel levelModel, LevelView levelView) {
 		this.levelModel = levelModel;
 		this.levelView = levelView;
 
@@ -28,7 +29,7 @@ public class Controller implements IController {
 		commandsMap = new HashMap<String, Command>();
 	}
 
-	public void setLevelModel(LevelModel levelModel) {
+	public void setLevelModel(ILevelModel levelModel) {
 		this.levelModel = levelModel;
 		commandsMap.put("decreaseLives", new DecreaseLivesCommand(levelModel));
 		commandsMap.put("endDoubleScore", new EndDoubleScoreCommand(levelModel));

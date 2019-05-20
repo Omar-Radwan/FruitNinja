@@ -3,7 +3,7 @@ package gameobjects;
 import factories.ImagesFactory;
 import javafx.scene.image.Image;
 
-public abstract class GameObject {
+public abstract class GameObject implements IGameObject{
 
 	protected boolean hasMovedOffScreen;
 	protected boolean isSliced;

@@ -1,12 +1,12 @@
 package command;
 
-import levelmodels.LevelModel;
+import levelmodels.ILevelModel;
 
 public class SaveBestScoreCommand implements Command {
 
-	LevelModel levelModel;
+	ILevelModel levelModel;
 
-	public SaveBestScoreCommand(LevelModel levelModel) {
+	public SaveBestScoreCommand(ILevelModel levelModel) {
 		this.levelModel = levelModel;
 	}
 

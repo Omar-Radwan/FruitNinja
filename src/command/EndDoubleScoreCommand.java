@@ -1,11 +1,12 @@
 package command;
 
-import levelmodels.LevelModel;
+import levelmodels.ILevelModel;
+
 
 public class EndDoubleScoreCommand implements Command {
-	LevelModel levelModel;
+	ILevelModel levelModel;
 
-	public EndDoubleScoreCommand(LevelModel levelModel) {
+	public EndDoubleScoreCommand(ILevelModel levelModel) {
 		this.levelModel = levelModel;
 	}
 

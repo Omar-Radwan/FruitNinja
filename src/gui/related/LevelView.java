@@ -7,6 +7,7 @@ import java.util.Random;
 import Controller.Controller;
 import Controller.IController;
 import gameobjects.GameObject;
+import gameobjects.IGameObject;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.PathTransition;
@@ -95,7 +96,7 @@ public class LevelView {
 		return stage;
 	}
 
-	public LevelView(Controller controller, Stage stage) {
+	public LevelView(IController controller, Stage stage) {
 		this.controller = controller;
 		this.stage = stage;
 		fillTypes();

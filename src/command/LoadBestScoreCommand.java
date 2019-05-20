@@ -1,12 +1,12 @@
 package command;
 
-import levelmodels.LevelModel;
+import levelmodels.ILevelModel;
 
 public class LoadBestScoreCommand implements Command {
 
-	LevelModel levelModel;
+	ILevelModel levelModel;
 
-	public LoadBestScoreCommand(LevelModel levelModel) {
+	public LoadBestScoreCommand(ILevelModel levelModel) {
 		this.levelModel = levelModel;
 	}
 

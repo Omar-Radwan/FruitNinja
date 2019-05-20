@@ -1,11 +1,13 @@
 package command;
 
-import levelmodels.LevelModel;
+
+import levelmodels.ILevelModel;
+
 
 public class DecreaseLivesCommand implements Command {
-	LevelModel levelModel;
+	ILevelModel levelModel;
 
-	public DecreaseLivesCommand(LevelModel levelModel) {
+	public DecreaseLivesCommand(ILevelModel levelModel) {
 		super();
 		this.levelModel = levelModel;
 	}

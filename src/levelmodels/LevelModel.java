@@ -18,7 +18,7 @@ import gameobjects.GameObject;
 import gameobjects.SpecialBanana;
 import gameobjects.SpecialMango;
 
-public abstract class LevelModel {
+public abstract class LevelModel implements ILevelModel {
 
 	protected Random r = new Random();
 
