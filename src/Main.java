@@ -12,15 +12,12 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		// System.out.println(new Banana().getImages()[0]);
-		// System.out.println(new Mango().getImages()[0]);
-	
-		
+
 		HomeScreen homeScreen = new HomeScreen(primaryStage);
-		
+
 		homeScreen.screen();
 		homeScreen.setController(new Controller());
-		
+
 		primaryStage.setResizable(false);
 		primaryStage.setTitle("Fruit Ninja");
 		primaryStage.show();

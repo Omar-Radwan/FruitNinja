@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import Controller.Controller;
+import Controller.IController;
 import gameobjects.GameObject;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -68,7 +69,7 @@ public class LevelView {
 
 	private Image background = new Image("file:src/gui/related/background.jpg");
 
-	public Controller controller;
+	public IController controller;
 
 	private ArrayList<Sprite> objects = new ArrayList<Sprite>();
 	private ArrayList<Sprite> fatalBomb = new ArrayList<Sprite>();
@@ -102,11 +103,11 @@ public class LevelView {
 		this.stage = stage;
 	}
 
-	public Controller getController() {
+	public IController getController() {
 		return controller;
 	}
 
-	public void setController(Controller controller) {
+	public void setController(IController controller) {
 		this.controller = controller;
 	}
 
@@ -136,7 +137,7 @@ public class LevelView {
 		// label to current score :
 
 		currentScore = new Label("Score: " + CurrScore);
-		 bestScoreLabel = new Label("Best: " + bestScore);
+		bestScoreLabel = new Label("Best: " + bestScore);
 
 		timerLabel.setText(timeSeconds.toString());
 		timerLabel.setTextFill(Color.RED);
@@ -412,7 +413,7 @@ public class LevelView {
 
 				for (int i = 0; i < objects.size(); i++) {
 					Sprite x = objects.get(i);
-					
+
 					if (x.intersects(mouse)) {
 						int number = x.getNumber();
 						Image img2 = new Image("file:src/gui/related/" + types[number] + "sliced.png");
@@ -508,18 +509,18 @@ public class LevelView {
 	// --------------------------------Controller Related
 	// Functions-------------------------------------
 	public void updateScore(int value) {
-		currentScore.setText("score: " + value);
+		currentScore.setText("Score: " + value);
+	}
+
+	public void updateBestScore(int value) {
+
 	}
 
 	public void endGame() {
 
 	}
 
-	public void updateLives() {
-
-	}
-
-	public void objectOutOfTheScreen() {
+	public void updateLives(int value) {
 
 	}
 
