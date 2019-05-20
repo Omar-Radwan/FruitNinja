@@ -414,7 +414,7 @@ public class LevelView {
 
 			@Override
 			public void handle(ActionEvent event) {
-				if(e.getImage().isDisabled() == false)
+				if(e.getImage().isDisabled() == false && e.getNumber()!=3 && e.getNumber()!=4)
 				controller.checkIfIsSliced(objectsNumb-1);
 			}
 		});
