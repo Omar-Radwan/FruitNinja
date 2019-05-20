@@ -1,5 +1,12 @@
 package Controller;
 
+import java.util.HashMap;
+
+import command.Command;
+import command.DecreaseLivesCommand;
+import command.EndDoubleScoreCommand;
+import command.LoadBestScoreCommand;
+import command.SaveBestScoreCommand;
 import gameobjects.Fruit;
 import gameobjects.GameObject;
 import gui.related.LevelView;
@@ -9,6 +16,7 @@ public class Controller implements IController {
 
 	protected LevelModel levelModel;
 	protected LevelView levelView;
+	protected HashMap<String, Command> commandsMap;
 
 	public Controller(LevelModel levelModel, LevelView levelView) {
 		this.levelModel = levelModel;
@@ -17,14 +25,23 @@ public class Controller implements IController {
 	}
 
 	public Controller() {
+		commandsMap = new HashMap<String, Command>();
 	}
 
 	public void setLevelModel(LevelModel levelModel) {
 		this.levelModel = levelModel;
+		commandsMap.put("decreaseLives", new DecreaseLivesCommand(levelModel));
+		commandsMap.put("endDoubleScore", new EndDoubleScoreCommand(levelModel));
+		commandsMap.put("save", new SaveBestScoreCommand(levelModel));
+		commandsMap.put("load", new LoadBestScoreCommand(levelModel));
+		commandsMap.get("load").execute();
 	}
 
 	public void setLevelView(LevelView levelView) {
 		this.levelView = levelView;
+		levelView.updateBestScore(levelModel.getBestScore());
+		levelView.updateLives(levelModel.getLives());
+
 	}
 
 	/*
@@ -53,6 +70,7 @@ public class Controller implements IController {
 
 	public void sliceFruit(int indx) {
 		levelModel.sliceFruit(indx);
+		commandsMap.get("save").execute();
 		levelView.updateScore(levelModel.getScore());
 		levelView.updateBestScore(levelModel.getBestScore());
 
@@ -72,7 +90,7 @@ public class Controller implements IController {
 	public void checkIfIsSliced(int indx) {
 		Fruit fruit = (Fruit) levelModel.getFruits().get(indx);
 		if (!fruit.isSliced()) {
-			levelModel.decreaseLives();
+			commandsMap.get("decreaselives").execute();
 		}
 		levelView.updateLives(levelModel.getLives());
 	}
@@ -118,7 +136,7 @@ public class Controller implements IController {
 	 */
 
 	public void endDoubleScore() {
-		levelModel.setDoubleScore(false);
+		commandsMap.get("endDoubleScore").execute();
 	}
 
 }
