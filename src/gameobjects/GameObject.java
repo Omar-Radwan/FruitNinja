@@ -24,18 +24,6 @@ public abstract class GameObject {
 		return number;
 	}
 
-	public void setNumber(int number) {
-		this.number = number;
-	}
-
-	public ImagesFactory getBufferedImagesFactory() {
-		return bufferedImagesFactory;
-	}
-
-	public void setBufferedImagesFactory(ImagesFactory bufferedImagesFactory) {
-		this.bufferedImagesFactory = bufferedImagesFactory;
-	}
-
 	public boolean isSliced() {
 		return isSliced;
 	}
@@ -70,11 +58,6 @@ public abstract class GameObject {
 
 	public void slice() {
 		isSliced = true;
-	}
-
-	public void move(double time) {
-		// xLocation=haga*time; i think leeha 3elaqa bel projectiles
-		// yLocation=haga*time;
 	}
 
 	public Image[] getImages() {

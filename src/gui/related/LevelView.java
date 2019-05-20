@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import Controller.Controller;
+import Controller.IController;
 import gameobjects.GameObject;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -68,7 +69,7 @@ public class LevelView {
 
 	private Image background = new Image("file:src/gui/related/background.jpg");
 
-	public Controller controller;
+	public IController controller;
 
 	private ArrayList<Sprite> objects = new ArrayList<Sprite>();
 	private ArrayList<Sprite> fatalBomb = new ArrayList<Sprite>();
@@ -84,6 +85,7 @@ public class LevelView {
 		types[0] = "banana";
 		types[1] = "apple";
 		types[2] = "watermelon";
+		types[5] = "SpecialBanana";
 
 	}
 
@@ -102,11 +104,11 @@ public class LevelView {
 		this.stage = stage;
 	}
 
-	public Controller getController() {
+	public IController getController() {
 		return controller;
 	}
 
-	public void setController(Controller controller) {
+	public void setController(IController controller) {
 		this.controller = controller;
 	}
 
@@ -212,12 +214,12 @@ public class LevelView {
 	private void setLabel(Label label) {
 		Color c1 = Color.RED;
 		label.setTextFill(c1);
-		label.setFont(Font.font("Verdana", FontWeight.BOLD, 30));
+		label.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
 
 	}
 
 	public void repeatSpecialFruit() {
-		Timeline timeline = new Timeline(new KeyFrame(new Duration(7000), new EventHandler() {
+		Timeline timeline = new Timeline(new KeyFrame(new Duration(4000), new EventHandler() {
 
 			@Override
 			public void handle(Event event) {
@@ -254,7 +256,7 @@ public class LevelView {
 		pathT.setPath(path);
 		pathT.setAutoReverse(false);
 		pathT.setCycleCount(1);
-		pathT.setDelay(Duration.millis(1000));
+		pathT.setDuration(Duration.millis(2000));
 		pathT.play();
 	}
 
@@ -421,7 +423,7 @@ public class LevelView {
 
 				for (int i = 0; i < objects.size(); i++) {
 					Sprite x = objects.get(i);
-					
+
 					if (x.intersects(mouse)) {
 						int number = x.getNumber();
 						Image img2 = new Image("file:src/gui/related/" + types[number] + "sliced.png");
@@ -431,8 +433,17 @@ public class LevelView {
 					}
 				}
 
-				for (int i = 0; i < objects.size(); i++) {
-
+				for (int i = 0; i < specialFruit.size(); i++) {
+					Sprite x = specialFruit.get(i);
+					if(x.intersects(mouse)) {
+						int number = x.getNumber();
+						Image img2 = new Image("file:src/gui/related/sliced" + types[number] + ".png");
+						x.getImage().setDisable(true);
+						x.setImage(img2);
+						controller.sliceSpecialFruit(i);
+					}
+					
+				}
 					for (int j = 0; j < normalBomb.size(); j++)
 						if (normalBomb.get(j).intersects(mouse)) {
 							mouse.getPositionX();
@@ -458,7 +469,7 @@ public class LevelView {
 							// }
 
 						}
-				}
+				//}
 
 			}
 
@@ -517,18 +528,18 @@ public class LevelView {
 	// --------------------------------Controller Related
 	// Functions-------------------------------------
 	public void updateScore(int value) {
-		currentScore.setText("score: " + value);
+		currentScore.setText("Score: " + value);
+	}
+
+	public void updateBestScore(int value) {
+
 	}
 
 	public void endGame() {
 
 	}
 
-	public void updateLives() {
-
-	}
-
-	public void objectOutOfTheScreen() {
+	public void updateLives(int value) {
 
 	}
 

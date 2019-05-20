@@ -4,7 +4,7 @@ import gameobjects.GameObject;
 import gui.related.LevelView;
 import levelmodels.LevelModel;
 
-public class Controller {
+public class Controller implements IController {
 
 	protected LevelModel levelModel;
 	protected LevelView levelView;
@@ -17,21 +17,17 @@ public class Controller {
 	public Controller() {
 	}
 
-	public LevelModel getLevelModel() {
-		return levelModel;
-	}
-
 	public void setLevelModel(LevelModel levelModel) {
 		this.levelModel = levelModel;
-	}
-
-	public LevelView getLevelView() {
-		return levelView;
 	}
 
 	public void setLevelView(LevelView levelView) {
 		this.levelView = levelView;
 	}
+
+	/*
+	 * Fruit getters
+	 */
 
 	public GameObject getFruit() {
 		return levelModel.getRandomFruit();
@@ -49,6 +45,10 @@ public class Controller {
 		return levelModel.getNonFatalBomb();
 	}
 
+	/*
+	 * Slicing functions
+	 */
+
 	public void sliceFruit(int indx) {
 		levelModel.sliceFruit(indx);
 		levelView.updateScore(levelModel.getScore());
@@ -57,20 +57,23 @@ public class Controller {
 	public void sliceSpecialFruit(int indx) {
 		levelModel.sliceSpecialFruit(indx);
 		levelView.updateScore(levelModel.getScore());
+		levelView.updateBestScore(levelModel.getBestScore());
 	}
 
 	public void sliceFatalBomb() {
 		levelView.endGame();
 	}
 
-	public void sliceNonFatalBomb() {
-		if (levelModel.getLives() > 1) {
-			levelModel.decreaseLives();
-			levelView.updateLives();
-		} else {
+	public void sliceNonFatalBomb(int indx) {
+		levelModel.sliceNonFatalBomb(indx);
+		if (levelModel.getLives() <= 0) {
 			levelView.endGame();
 		}
 	}
+
+	/*
+	 * Get level parameters
+	 */
 
 	public int getRepeatDur() {
 		return levelModel.getRepeatDur();
@@ -94,6 +97,14 @@ public class Controller {
 
 	public int getPathNormalDur() {
 		return levelModel.getPathNormalDur();
+	}
+
+	/*
+	 * updating functions
+	 */
+
+	public void endDoubleScore() {
+		levelModel.setDoubleScore(false);
 	}
 
 }
