@@ -11,6 +11,7 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.PathTransition;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -86,6 +87,7 @@ public class LevelView {
 		types[1] = "apple";
 		types[2] = "watermelon";
 		types[5] = "SpecialBanana";
+		types[6] = "SpecialOrange";
 
 	}
 
@@ -393,7 +395,7 @@ public class LevelView {
 			x = e.getPositionY();
 			path.getElements().add(new MoveTo(870, x));
 			quadCurve.setX(random.nextInt(200));
-			quadCurve.setY(600);
+			quadCurve.setY(700);
 			quadCurve.setControlX(500 + random.nextInt(100));
 			quadCurve.setControlY(50 + random.nextInt(50));
 			path.getElements().add(quadCurve);
@@ -408,21 +410,17 @@ public class LevelView {
 		pat.setCycleCount(1);
 		pat.setDuration(Duration.millis(dur));
 		pat.play();
+		pat.setOnFinished(new EventHandler<ActionEvent>() {
 
+			@Override
+			public void handle(ActionEvent event) {
+				if(e.getImage().isDisabled() == false)
+				controller.checkIfIsSliced(objectsNumb-1);
+			}
+		});
 	}
 
 	int time;
-	/*
-	 * public void timeDoubleStop() { Timeline tl = new Timeline(new KeyFrame(new
-	 * Duration(1000), new EventHandler() {
-	 * 
-	 * @Override public void handle(Event arg0) { int alo = timeSeconds;
-	 * System.out.println(alo); if(alo >= time) { System.out.println("FU");
-	 * controller.endDoubleScore(); }
-	 * 
-	 * } })); timeline.setCycleCount(Animation.INDEFINITE);
-	 * timeline.setAutoReverse(true); timeline.play(); }
-	 */
 
 	public void cut(Stage stage) {
 		scene.setOnMouseMoved(new EventHandler<MouseEvent>() {
@@ -436,20 +434,21 @@ public class LevelView {
 
 				for (int i = 0; i < objects.size(); i++) {
 					Sprite x = objects.get(i);
-
+				//	System.out.println(objects.get(i).getPositionY());
 					if (x.intersects(mouse)) {
 						int number = x.getNumber();
 						Image img2 = new Image("file:src/gui/related/" + types[number] + "sliced.png");
 						x.getImage().setDisable(true);
 						x.setImage(img2);
 						controller.sliceFruit(i);
-
+						
 					}
-
-					else if (x.getPositionY() == 600) {
+				/*	else if(x.getPositionY() >= 600) {
+						System.out.println("FU");
 						controller.checkIfIsSliced(i);
+					}*/
 
-					}
+					
 				}
 
 				for (int i = 0; i < specialFruit.size(); i++) {
