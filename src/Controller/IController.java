@@ -1,6 +1,7 @@
 package Controller;
 
 import gameobjects.GameObject;
+import gameobjects.IGameObject;
 import gui.related.LevelView;
 import levelmodels.ILevelModel;
 import levelmodels.LevelModel;
@@ -35,12 +36,12 @@ public interface IController {
 
 	public void setLevelModel(ILevelModel levelModel);
 
-	public GameObject getFruit();
+	public IGameObject getFruit();
 
-	public GameObject getFatalBomb();
+	public IGameObject getFatalBomb();
 
-	public GameObject getSpecialFruit();
+	public IGameObject getSpecialFruit();
 
-	public GameObject getNonFatalBomb();
+	public IGameObject getNonFatalBomb();
 
 }

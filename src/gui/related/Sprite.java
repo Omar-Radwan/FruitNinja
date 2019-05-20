@@ -41,7 +41,7 @@ public class Sprite {
 		positionY = 0;
 	}
 
-	public Sprite(Image image, int radius, int number) {
+	public Sprite(Image image, int number) {
 		this.image = image;
 		img.setImage(image);
 		positionX = 0;

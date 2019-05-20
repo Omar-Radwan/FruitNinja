@@ -7,6 +7,7 @@ import java.util.Random;
 import Controller.Controller;
 import Controller.IController;
 import gameobjects.GameObject;
+import gameobjects.IGameObject;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.PathTransition;
@@ -237,8 +238,8 @@ public class LevelView {
 	}
 
 	public void setSpecialFruit() {
-		GameObject x = controller.getSpecialFruit();
-		specialFruit.add(new Sprite(x.getImages()[0], x.radius, x.getNumber()));
+		IGameObject x = controller.getSpecialFruit();
+		specialFruit.add(new Sprite(x.getImages()[0], x.getNumber()));
 		Random r = new Random();
 		specialFruit.get(specialFruit.size() - 1).setPositinoX(r.nextInt(700) + 10);
 		specialFruit.get(specialFruit.size() - 1).setPositionY(-50);
@@ -264,8 +265,8 @@ public class LevelView {
 	}
 
 	public void setFatalBomb() {
-		GameObject x = controller.getFatalBomb();
-		fatalBomb.add(new Sprite(x.getImages()[0], x.radius, x.getNumber()));
+		IGameObject x = controller.getFatalBomb();
+		fatalBomb.add(new Sprite(x.getImages()[0], x.getNumber()));
 		mouse.setPic(3);
 		int j = random.nextInt(2);
 		if (j == 0) {
@@ -294,9 +295,9 @@ public class LevelView {
 	}
 
 	public void setNormalBomb() {
-		GameObject x = controller.getNonFatalBomb();
+		IGameObject x = controller.getNonFatalBomb();
 		mouse.setPic(4);
-		normalBomb.add(new Sprite(x.getImages()[0], x.radius, x.getNumber()));
+		normalBomb.add(new Sprite(x.getImages()[0], x.getNumber()));
 
 		int j = random.nextInt(2);
 
@@ -342,8 +343,8 @@ public class LevelView {
 
 	public void setFruits() {
 
-		GameObject x = controller.getFruit();
-		objects.add(new Sprite(x.getImages()[0], x.radius, x.getNumber()));
+		IGameObject x = controller.getFruit();
+		objects.add(new Sprite(x.getImages()[0], x.getNumber()));
 
 		int j = random.nextInt(2);
 

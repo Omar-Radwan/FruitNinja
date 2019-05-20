@@ -9,6 +9,7 @@ import command.LoadBestScoreCommand;
 import command.SaveBestScoreCommand;
 import gameobjects.Fruit;
 import gameobjects.GameObject;
+import gameobjects.IGameObject;
 import gui.related.LevelView;
 import levelmodels.ILevelModel;
 import levelmodels.LevelModel;
@@ -49,19 +50,19 @@ public class Controller implements IController {
 	 * Fruit getters
 	 */
 
-	public GameObject getFruit() {
+	public IGameObject getFruit() {
 		return levelModel.getRandomFruit();
 	}
 
-	public GameObject getFatalBomb() {
+	public IGameObject getFatalBomb() {
 		return levelModel.getFatalBomb();
 	}
 
-	public GameObject getSpecialFruit() {
+	public IGameObject getSpecialFruit() {
 		return levelModel.getRandomSpecialFruit();
 	}
 
-	public GameObject getNonFatalBomb() {
+	public IGameObject getNonFatalBomb() {
 		return levelModel.getNonFatalBomb();
 	}
 

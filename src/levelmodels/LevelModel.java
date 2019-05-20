@@ -15,6 +15,7 @@ import factories.ObjectFactory;
 import gameobjects.Bomb;
 import gameobjects.Fruit;
 import gameobjects.GameObject;
+import gameobjects.IGameObject;
 import gameobjects.SpecialBanana;
 import gameobjects.SpecialMango;
 
@@ -33,9 +34,9 @@ public abstract class LevelModel implements ILevelModel {
 	protected int score;
 	protected int bestScore;
 
-	protected ArrayList<GameObject> fruits;
-	protected ArrayList<GameObject> specialFruits;
-	protected ArrayList<GameObject> nonFatalBombs;
+	protected ArrayList<IGameObject> fruits;
+	protected ArrayList<IGameObject> specialFruits;
+	protected ArrayList<IGameObject> nonFatalBombs;
 
 	protected boolean isDoubleScore;
 	protected ObjectFactory objectFactory = ObjectFactory.getInstance();
@@ -45,18 +46,18 @@ public abstract class LevelModel implements ILevelModel {
 	public LevelModel() {
 		lives = 3;
 		score = 0;
-		fruits = new ArrayList<GameObject>();
-		specialFruits = new ArrayList<GameObject>();
-		nonFatalBombs = new ArrayList<GameObject>();
+		fruits = new ArrayList<IGameObject>();
+		specialFruits = new ArrayList<IGameObject>();
+		nonFatalBombs = new ArrayList<IGameObject>();
 		isDoubleScore = false;
 
 	}
 
-	public ArrayList<GameObject> getNonFatalBombs() {
+	public ArrayList<IGameObject> getNonFatalBombs() {
 		return nonFatalBombs;
 	}
 
-	public void setNonFatalBombs(ArrayList<GameObject> nonFatalBombs) {
+	public void setNonFatalBombs(ArrayList<IGameObject> nonFatalBombs) {
 		this.nonFatalBombs = nonFatalBombs;
 	}
 
@@ -84,19 +85,19 @@ public abstract class LevelModel implements ILevelModel {
 		this.score = score;
 	}
 
-	public ArrayList<GameObject> getFruits() {
+	public ArrayList<IGameObject> getFruits() {
 		return fruits;
 	}
 
-	public void setFruits(ArrayList<GameObject> fruits) {
+	public void setFruits(ArrayList<IGameObject> fruits) {
 		this.fruits = fruits;
 	}
 
-	public ArrayList<GameObject> getSpecialFruits() {
+	public ArrayList<IGameObject> getSpecialFruits() {
 		return specialFruits;
 	}
 
-	public void setSpecialFruits(ArrayList<GameObject> specialFruits) {
+	public void setSpecialFruits(ArrayList<IGameObject> specialFruits) {
 		this.specialFruits = specialFruits;
 	}
 
@@ -167,7 +168,7 @@ public abstract class LevelModel implements ILevelModel {
 	/*
 	 * GameObject getters
 	 */
-	public GameObject getRandomFruit() {
+	public IGameObject getRandomFruit() {
 
 		int i = r.nextInt(3);
 
@@ -185,7 +186,7 @@ public abstract class LevelModel implements ILevelModel {
 	}
 
 	// eb2a 8aiar al asamy bta3t al special fruits hna
-	public GameObject getRandomSpecialFruit() {
+	public IGameObject getRandomSpecialFruit() {
 		int i = r.nextInt(2);
 
 		GameObject x = null;
@@ -200,13 +201,13 @@ public abstract class LevelModel implements ILevelModel {
 
 	}
 
-	public GameObject getNonFatalBomb() {
+	public IGameObject getNonFatalBomb() {
 		GameObject x = objectFactory.getGameObject("nonfatalbomb");
 		nonFatalBombs.add(x);
 		return x;
 	}
 
-	public GameObject getFatalBomb() {
+	public IGameObject getFatalBomb() {
 		return objectFactory.getGameObject("fatalbomb");
 	}
 
