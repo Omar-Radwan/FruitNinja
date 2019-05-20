@@ -409,9 +409,28 @@ public class LevelView {
 		pat.play();
 
 	}
+	int time;
+	/*public void timeDoubleStop() {
+		Timeline tl = new Timeline(new KeyFrame(new Duration(1000), new EventHandler() {
+
+			@Override
+			public void handle(Event arg0) {
+				int alo = timeSeconds;
+				System.out.println(alo);
+				if(alo >= time) {
+					System.out.println("FU");
+					controller.endDoubleScore();
+				}
+					
+			}
+		}));
+		timeline.setCycleCount(Animation.INDEFINITE);
+		timeline.setAutoReverse(true);
+		timeline.play();
+	}*/
+	
 
 	public void cut(Stage stage) {
-
 		scene.setOnMouseMoved(new EventHandler<MouseEvent>() {
 
 			@Override
@@ -441,13 +460,17 @@ public class LevelView {
 						x.getImage().setDisable(true);
 						x.setImage(img2);
 						controller.sliceSpecialFruit(i);
+						 time = timeSeconds+4;
+				/*		 System.out.println();
+						 System.out.println(time);*/
+						
+						
 					}
 					
 				}
 					for (int j = 0; j < normalBomb.size(); j++)
 						if (normalBomb.get(j).intersects(mouse)) {
 							mouse.getPositionX();
-							mouse.getPositionY();
 							GameOverScene(stage);
 						}
 
@@ -470,11 +493,18 @@ public class LevelView {
 
 						}
 				//}
+					int x = timeSeconds;
+					if(x>=time) {
+						controller.endDoubleScore();
+					}
 
 			}
+			
 
 		});
-
+		
+			
+		
 	}
 
 	private void GameOverScene(Stage stage) {
@@ -532,7 +562,7 @@ public class LevelView {
 	}
 
 	public void updateBestScore(int value) {
-
+	bestScoreLabel.setText("best :" + value);
 	}
 
 	public void GameOverScene() {

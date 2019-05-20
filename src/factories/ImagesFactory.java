@@ -4,7 +4,13 @@ package factories;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.scene.image.Image;
+import javafx.util.Duration;
 
 public class ImagesFactory {
 
@@ -81,5 +87,18 @@ public class ImagesFactory {
 	public Image[] getNonFatalBombImages() {
 		return ImageMap.get("nonfatalbomb");
 	}
+/*
+ * Timeline timeline = new Timeline(new KeyFrame(new Duration(controller.getRepeatDur()), new EventHandler() {
+			@Override
+			public void handle(Event event) {
+				setFruits();
+				setPath(objects.get(objectsNumb - 1), pathFruitDur);
+			}
+		}));
 
+		timeline.setCycleCount(Animation.INDEFINITE);
+		timeline.setAutoReverse(true);
+		timeline.play();
+
+ * */
 }
