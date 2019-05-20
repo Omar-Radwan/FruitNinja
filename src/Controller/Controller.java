@@ -53,9 +53,11 @@ public class Controller implements IController {
 		levelModel.sliceFruit(indx);
 		levelView.updateScore(levelModel.getScore());
 		levelView.updateBestScore(levelModel.getBestScore());
+		
 	}
 
 	public void sliceSpecialFruit(int indx) {
+		levelView.updateLives(levelModel.getLives());
 		levelModel.sliceSpecialFruit(indx);
 		levelView.updateScore(levelModel.getScore());
 		levelView.updateBestScore(levelModel.getBestScore());
@@ -64,8 +66,11 @@ public class Controller implements IController {
 	public void sliceFatalBomb() {
 		levelView.endGame();
 	}
-
+	public void checkIfIsSliced(int index) {
+		
+	}
 	public void sliceNonFatalBomb(int indx) {
+		levelView.updateLives(levelModel.getLives());
 		levelModel.sliceNonFatalBomb(indx);
 		if (levelModel.getLives() <= 0) {
 			levelView.endGame();

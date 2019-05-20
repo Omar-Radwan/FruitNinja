@@ -21,6 +21,8 @@ public interface IController {
 	public void endDoubleScore();
 
 	public void sliceFruit(int indx);
+	
+	public void checkIfIsSliced(int index);
 
 	public void sliceSpecialFruit(int indx);
 

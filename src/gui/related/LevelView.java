@@ -449,7 +449,10 @@ public class LevelView {
 						x.getImage().setDisable(true);
 						x.setImage(img2);
 						controller.sliceFruit(i);
+						
 					}
+					else if(x.getPositionY() == 600)
+						controller.checkIfIsSliced(i);
 				}
 
 				for (int i = 0; i < specialFruit.size(); i++) {
