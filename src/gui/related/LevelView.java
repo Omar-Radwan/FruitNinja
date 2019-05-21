@@ -51,8 +51,8 @@ public class LevelView {
 	private GraphicsContext gc;
 	private Canvas canvas = new Canvas(800, 500);
 
-	private int timeSeconds = 0;
-	private Timeline timeline;
+	 int timeSeconds = 0;
+	 Timeline timeline;
 	private Random random = new Random();
 
 	protected Sprite mouse = new Sprite();
@@ -60,7 +60,7 @@ public class LevelView {
 	protected Scene scene;
 
 	// game labels
-	private Label timerLabel = new Label();
+	Label timerLabel = new Label();
 	private Label currentScore;
 	private Label bestScoreLabel;
 	private Label scoreImg = new Label();
@@ -71,9 +71,9 @@ public class LevelView {
 
 	// sprites arraylists
 	private ArrayList<Sprite> objects = new ArrayList<Sprite>();
-	private ArrayList<Sprite> fatalBomb = new ArrayList<Sprite>();
+//	private ArrayList<Sprite> fatalBomb = new ArrayList<Sprite>();
 	private ArrayList<Sprite> normalBomb = new ArrayList<Sprite>();
-	private ArrayList<Sprite> specialFruit = new ArrayList<Sprite>();
+	protected ArrayList<Sprite> specialFruit = new ArrayList<Sprite>();
 
 	private Stage stage;
 
@@ -141,12 +141,12 @@ public class LevelView {
 		timerLabel.setLayoutX(750);
 		timerLabel.setLayoutY(0);
 
-		timeSeconds = 0;
+		//timeSeconds = 0;
 		timeline = new Timeline();
 
 		timeline.setCycleCount(Timeline.INDEFINITE);
 
-		timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(1), new EventHandler() {
+		/*timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(1), new EventHandler() {
 
 			@Override
 			public void handle(Event event) {
@@ -154,7 +154,7 @@ public class LevelView {
 				timerLabel.setText(Integer.toString(timeSeconds));
 
 			}
-		}));
+		}));*/
 
 		timeline.playFromStart();
 
@@ -171,11 +171,11 @@ public class LevelView {
 		scoreImg.setLayoutX(10);
 		scoreImg.setLayoutY(0);
 
-		root.getChildren().add(scoreImg);
+	//	root.getChildren().add(scoreImg);
 		root.getChildren().add(livesLabel);
 
 		repeatingImage();
-		repeatingfatalBomb();
+	//	repeatingfatalBomb();
 		repeatingnormalBomb();
 		repeatSpecialFruit();
 
