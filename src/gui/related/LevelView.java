@@ -118,15 +118,14 @@ public class LevelView {
 		this.controller = controller;
 	}
 
-	int objectsNumb = 0;
-	int fatalBombs = 0;
-	int normalBombs = 0;
-	int specialFruits = 0;
-	static int fataBombDur;
+	private int objectsNumb = 0;
+	private int fatalBombs = 0;
+	private int normalBombs = 0;
+	private int specialFruits = 0;
+	private  int fataBombDur;
+	 private int normalBombDur;
 
-	static int normalBombDur;
-
-	static int pathFruitDur;
+	int pathFruitDur;
 	Label livesLabel = new Label();
 
 	public void level() {
