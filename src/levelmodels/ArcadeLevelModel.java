@@ -1,15 +1,14 @@
 package levelmodels;
 
-public class MediumLevelModel extends LevelModel {
-
-	public MediumLevelModel() {
+public class ArcadeLevelModel extends LevelModel {
+	public ArcadeLevelModel() {
 		super();
 		repeatDur = 500;
 		fataldur = 5000;
 		normaldur = 4000;
 		pathFruitDur = 3000;
-		pathFatalDur = 3000;
 		pathNormalDur = 3000;
-		fileName = "mediumscore.txt";
+		fileName = "arcadescore.txt";
 	}
+
 }

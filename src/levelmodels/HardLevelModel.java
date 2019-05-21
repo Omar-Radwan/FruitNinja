@@ -2,6 +2,7 @@ package levelmodels;
 public class HardLevelModel extends LevelModel {
 
 	public HardLevelModel() {
+		super();
 		repeatDur = 250;
 		fataldur = 2000;
 		normaldur = 1000;
