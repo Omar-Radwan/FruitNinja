@@ -17,7 +17,7 @@ import gameobjects.Fruit;
 import gameobjects.GameObject;
 import gameobjects.IGameObject;
 import gameobjects.SpecialBanana;
-import gameobjects.SpecialMango;
+import gameobjects.SpecialOrange;
 
 public abstract class LevelModel implements ILevelModel {
 

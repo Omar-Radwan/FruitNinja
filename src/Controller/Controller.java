@@ -14,10 +14,9 @@ import gameobjects.Fruit;
 import gameobjects.GameObject;
 import gameobjects.IGameObject;
 import gameobjects.SpecialBanana;
-import gameobjects.SpecialMango;
+import gameobjects.SpecialOrange;
 import gui.related.LevelView;
 import levelmodels.ILevelModel;
-import levelmodels.LevelModel;
 
 public class Controller implements IController {
 
@@ -97,9 +96,9 @@ public class Controller implements IController {
 		levelModel.getNonFatalBombs().add(x);
 		return x;
 	}
-	public IGameObject getSpecialBanana()
-	{
-		IGameObject x=objectFactory.getGameObject("specialbanana");
+
+	public IGameObject getSpecialBanana() {
+		IGameObject x = objectFactory.getGameObject("specialbanana");
 		levelModel.getSpecialFruits().add(x);
 		return x;
 	}
@@ -114,33 +113,33 @@ public class Controller implements IController {
 		if (!fruit.isSliced()) {
 			fruit.slice();
 			if (!levelModel.isDoubleScore())
-				levelModel.setScore(levelModel.getScore()+1);
+				levelModel.setScore(levelModel.getScore() + fruit.getScore());
 			else
-				levelModel.setScore(levelModel.getScore()+fruit.getScore() * 2);
+				levelModel.setScore(levelModel.getScore() + fruit.getScore() * 2);
 
 			if (levelModel.getScore() > levelModel.getBestScore()) {
 				levelModel.setBestScore(levelModel.getScore());
 			}
 		}
 		commandsMap.get("save").execute();
+
 		levelView.updateScore(levelModel.getScore());
 		levelView.updateBestScore(levelModel.getBestScore());
 	}
 
 	public void sliceSpecialFruit(int indx) {
-		levelView.updateLives(levelModel.getLives());
 		Fruit fruit = (Fruit) levelModel.getSpecialFruits().get(indx);
 		if (!fruit.isSliced()) {
 			fruit.slice();
 			if (fruit instanceof SpecialBanana) {
 				levelModel.setDoubleScore(true);
-			} else if (fruit instanceof SpecialMango) {
+			} else if (fruit instanceof SpecialOrange) {
 				levelModel.setLives(levelModel.getLives() + 1);
 			}
+			levelView.updateLives(levelModel.getLives());
+			levelView.updateScore(levelModel.getScore());
+			levelView.updateBestScore(levelModel.getBestScore());
 		}
-
-		levelView.updateScore(levelModel.getScore());
-		levelView.updateBestScore(levelModel.getBestScore());
 	}
 
 	public void sliceFatalBomb() {
@@ -148,29 +147,38 @@ public class Controller implements IController {
 	}
 
 	public void checkIfIsSliced(int indx) {
+
 		Fruit fruit = (Fruit) levelModel.getFruits().get(indx);
 
 		if (!fruit.isSliced()) {
+
 			commandsMap.get("decreaseLives").execute();
+
+			if (levelModel.getLives() <= 0) {
+				levelView.GameOverScene();
+			}
+
+			levelView.updateLives(levelModel.getLives());
 		}
 
-		if (levelModel.getLives() <= 0) {
-			levelView.GameOverScene();
-		}
-
-		levelView.updateLives(levelModel.getLives());
 	}
 
 	public void sliceNonFatalBomb(int indx) {
 		Bomb bomb = (Bomb) levelModel.getNonFatalBombs().get(indx);
+
 		if (!bomb.isSliced()) {
+
 			bomb.slice();
+
+			commandsMap.get("decreaseLives").execute();
+
+			if (levelModel.getLives() <= 0) {
+				levelView.GameOverScene();
+			}
+
+			levelView.updateLives(levelModel.getLives());
 		}
-		levelModel.decreaseLives();
-		if (levelModel.getLives() <= 0) {
-			levelView.GameOverScene();
-		}
-		levelView.updateLives(levelModel.getLives());
+
 	}
 
 	/*
