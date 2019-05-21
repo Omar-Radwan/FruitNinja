@@ -14,6 +14,7 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 import levelmodels.EasyLevelModel;
 import levelmodels.HardLevelModel;
@@ -75,6 +76,7 @@ public class HomeScreen {
 
 			@Override
 			public void handle(ActionEvent arg0) {
+				click();
 				createNewLevel(new EasyLevelModel());
 
 			}
@@ -84,6 +86,7 @@ public class HomeScreen {
 
 			@Override
 			public void handle(ActionEvent arg0) {
+				click();
 				createNewLevel(new MediumLevelModel());
 			}
 		});
@@ -92,6 +95,7 @@ public class HomeScreen {
 
 			@Override
 			public void handle(ActionEvent arg0) {
+				click();
 				createNewLevel(new HardLevelModel());
 			}
 		});
@@ -111,6 +115,12 @@ public class HomeScreen {
 		controller.setLevelModel(levelModel);
 		level = new LevelView(controller, stage);
 		controller.setLevelView(level);
+
+	}
+	protected void click() {
+		AudioClip s = new AudioClip(this.getClass()
+				.getResource("click.mp3").toString());
+		s.play();
 
 	}
 
