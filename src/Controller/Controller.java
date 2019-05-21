@@ -81,7 +81,7 @@ public class Controller implements IController {
 	public IGameObject getSpecialFruit() {
 		int i = r.nextInt(2);
 
-		GameObject x = null;
+		IGameObject x = null;
 
 		if (i == 0) {
 			x = objectFactory.getGameObject("SpecialBanana");
@@ -93,8 +93,14 @@ public class Controller implements IController {
 	}
 
 	public IGameObject getNonFatalBomb() {
-		GameObject x = objectFactory.getGameObject("nonfatalbomb");
+		IGameObject x = objectFactory.getGameObject("nonfatalbomb");
 		levelModel.getNonFatalBombs().add(x);
+		return x;
+	}
+	public IGameObject getSpecialBanana()
+	{
+		IGameObject x=objectFactory.getGameObject("specialbanana");
+		levelModel.getSpecialFruits().add(x);
 		return x;
 	}
 
