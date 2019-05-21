@@ -21,6 +21,7 @@ import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -47,6 +48,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import levelmodels.ILevelModel;
 
 public class LevelView {
 	private Group root = new Group();
@@ -66,6 +68,7 @@ public class LevelView {
 	static Integer live = 3;
 	Label currentScore;
 	Label bestScoreLabel;
+	Label scoreImg = new Label();
 //	static int fruitSpeedX;// = 4;
 //	static int fruitSpeedY;// = 3;
 
@@ -140,15 +143,20 @@ public class LevelView {
 
 		// label to current score :
 
-		currentScore = new Label("Score: " + CurrScore);
+		currentScore = new Label("" + CurrScore);
+		currentScore.setLayoutX(50);
+		currentScore.setLayoutY(0);
+		currentScore.setTextFill(Color.GOLDENROD);
+		currentScore.setFont(Font.font("Vineta BT", FontWeight.EXTRA_BOLD, 20));
+		
 		bestScoreLabel = new Label("Best: " + bestScore);
-		setLabel(currentScore);
-		setLabel(bestScoreLabel);
+		bestScoreLabel.setTextFill(Color.GREEN);
+		bestScoreLabel.setFont(Font.font("Broadway", FontWeight.EXTRA_BOLD, 20));
 
 		timerLabel.setText(timeSeconds.toString());
 		timerLabel.setTextFill(Color.RED);
 		timerLabel.setStyle("-fx-font-size: 4em;");
-		timerLabel.setLayoutX(650);
+		timerLabel.setLayoutX(750);
 		timerLabel.setLayoutY(0);
 		timeSeconds = StartTime;
 		timeline = new Timeline();
@@ -199,6 +207,15 @@ public class LevelView {
 		 */
 		livesLabel.setLayoutX(720);
 		livesLabel.setLayoutY(70);
+		
+		////////////
+		Image image3 = new Image("file:src/gui/related/score.png", 60, 60, false, false);
+		scoreImg.setGraphic(new ImageView(image3));
+		
+		scoreImg.setLayoutX(10);
+		scoreImg.setLayoutY(0);
+		root.getChildren().add(scoreImg);
+		///////////////////
 		root.getChildren().add(livesLabel);
 		repeatingImage();
 		repeatingfatalBomb();
@@ -438,6 +455,7 @@ public class LevelView {
 				//	System.out.println(objects.get(i).getPositionY());
 					if (x.intersects(mouse)) {
 						int number = x.getNumber();
+						soundSlicing();
 						Image img2 = new Image("file:src/gui/related/" + types[number] + "sliced.png");
 						x.getImage().setDisable(true);
 						x.setImage(img2);
@@ -456,6 +474,7 @@ public class LevelView {
 					Sprite x = specialFruit.get(i);
 					if (x.intersects(mouse)) {
 						int number = x.getNumber();
+						soundSlicing();
 						Image img2 = new Image("file:src/gui/related/sliced" + types[number] + ".png");
 						x.getImage().setDisable(true);
 						x.setImage(img2);
@@ -471,6 +490,7 @@ public class LevelView {
 				for (int j = 0; j < normalBomb.size(); j++) {
 					if (normalBomb.get(j).intersects(mouse)) {
 						controller.sliceNonFatalBomb(j);
+						bombSlicing();
 						Image img2 = new Image("file:src/gui/related/boooomb.png", 80, 80, false, false);
 						normalBomb.get(j).getImage().setDisable(true);
 						normalBomb.get(j).setImage(img2);
@@ -498,13 +518,25 @@ public class LevelView {
 
 	}
 
+	private void setStyle(Button button) {
+		button.setStyle("-fx-background-color: \r\n" + "        #F79704,\r\n"
+				+ "        linear-gradient(#F79704 50%, white 100%),\r\n"
+				+ "        radial-gradient(center 50% -40%, radius 200%, #F79704 45%, rgba(230,230,230,0) 50%);\r\n"
+				+ "    -fx-background-radius: 30;\r\n" + "    -fx-background-insets: 0,1,1;\r\n"
+				+ "    -fx-text-fill: black;\r\n"
+				+ "    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 3, 0.0 , 0 , 1 );");
+
+		button.setTextFill(Color.WHEAT);
+	}
 	public void GameOverScene() {
+		
 		Text GO = new Text("GAME OVER");
 		Font f = Font.font("Castellar", FontWeight.BOLD, FontPosture.REGULAR, 100);
 		GO.setFill(Color.RED);
 		GO.setFont(f);
+		HBox hb = new HBox(30);
+		hb.getChildren().add(GO);
 
-		HBox hb = new HBox(GO);
 		hb.setAlignment(Pos.CENTER);
 		Image img = new Image("file:src/gui/related/background.jpg");
 		BackgroundImage bgImg = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
@@ -513,43 +545,59 @@ public class LevelView {
 
 		hb.setBackground(new Background(bgImg));
 
+		VBox vb = new VBox(10);
+
+		Button newGame = new Button("New game");
+		setStyle(newGame);
+		Button exit = new Button("Exit");
+		setStyle(exit);
+
+		
+		vb.getChildren().add(exit);
+		vb.getChildren().add(newGame);
+		vb.setAlignment(Pos.CENTER_RIGHT);
+		hb.getChildren().add(vb);
+		exit.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent e) {
+				// TODO Auto-generated method stub
+				click();
+				System.exit(0);
+
+			}
+
+		});
+
+		newGame.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent e) {
+				click();
+				// TODO Auto-generated method stub
+				HomeScreen hm = new HomeScreen(stage);
+				hm.screen();
+			//	createNewLevel(levelModel);
+				//hm.createNewLevel(levelModel);
+				
+
+			}
+		});
 		Scene gameOver = new Scene(hb, 800, 500);
 		stage.setScene(gameOver);
 		stage.show();
 		GameOverSound();
 	}
-
-	private void alert() {
-		Text warning = new Text("YOU HAVE LOST A LIFE");
-		Font f = Font.font("Swis721 BlkOul BT", FontWeight.BOLD, FontPosture.REGULAR, 20);
-		warning.setFill(Color.RED);
-		warning.setFont(f);
-
-		Image imgW = new Image("file:src/gui/related/1219012_thumb.png");
-		ImageView iv = new ImageView(imgW);
-		iv.setFitHeight(40);
-		iv.setFitWidth(40);
-
-		Image img = new Image("file:src/gui/related/background.jpg");
-		BackgroundImage bgImg = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
-				BackgroundPosition.DEFAULT,
-				new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false));
-
-		HBox hb = new HBox(10);
-		hb.getChildren().addAll(warning, iv);
-		hb.setAlignment(Pos.CENTER);
-		hb.setBackground(new Background(bgImg));
-		Scene scene = new Scene(hb, 400, 250);
-		Stage stg = new Stage();
-		stg.setScene(scene);
-		stg.show();
-		soundAlert();
-	}
+	//////////////////////////////
+	
+	/////////////////////////////////
+	
 
 	// --------------------------------Controller Related
 	// Functions-------------------------------------
 	public void updateScore(int value) {
-		currentScore.setText("Score: " + value);
+		currentScore.setText("" + value);
+		currentScore.setLayoutX(10);
+		currentScore.setLayoutY(0);
 	}
 
 	public void updateBestScore(int value) {
@@ -564,28 +612,33 @@ public class LevelView {
 
 	protected void GameOverSound() {
 		AudioClip ov = new AudioClip(this.getClass()
-				.getResource("src/zapsplat_human_male_laugh_snigger_closed_mouth_002_15992.mp3").toString());
+				.getResource("gameOver.mp3").toString());
 		ov.play();
 	}
 
 	protected void soundSlicing() {
 		AudioClip s = new AudioClip(this.getClass()
-				.getResource("zapsplat_food_tomato_slice_knife_wooden_chopping_board_001_29262.mp3").toString());
+				.getResource("Slice.mp3").toString());
 		s.play();
 
 	}
 
-	protected void soundAlert() {
-		AudioClip sA = new AudioClip(this.getClass()
-				.getResource("zapsplat_multimedia_alert_short_2_notes_mallet_synth_exclamation_25550.mp3").toString());
-		sA.play();
+	protected void bombSlicing() {
+		AudioClip s = new AudioClip(this.getClass()
+				.getResource("bombSound.mp3").toString());
+		s.play();
 
 	}
+	protected void click() {
+		AudioClip s = new AudioClip(this.getClass()
+				.getResource("click.mp3").toString());
+		s.play();
 
-	private void gameMusic() {
-		String musicFile = "audio_hero_Laughs-And-Giggles_SIPML_K-04-01-01.mp3"; // For example
-		Media sound = new Media(new File(musicFile).toURI().toString());
-		MediaPlayer mediaPlayer = new MediaPlayer(sound);
-		mediaPlayer.play();
 	}
+//	private void gameMusic() {
+//		String musicFile = "audio_hero_Laughs-And-Giggles_SIPML_K-04-01-01.mp3"; // For example
+//		Media sound = new Media(new File(musicFile).toURI().toString());
+//		MediaPlayer mediaPlayer = new MediaPlayer(sound);
+//		mediaPlayer.play();
+//	}
 }
