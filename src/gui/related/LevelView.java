@@ -244,7 +244,7 @@ public class LevelView {
 	public void setFatalBomb() {
 		IGameObject x = controller.getFatalBomb();
 		fatalBomb.add(new Sprite(x.getImages()[0], x.getNumber()));
-		mouse.setPic(3);
+
 		int j = random.nextInt(2);
 		if (j == 0) {
 			setPositionX(fatalBomb.get(fatalBomb.size() - 1));
@@ -271,7 +271,7 @@ public class LevelView {
 
 	public void setNormalBomb() {
 		IGameObject x = controller.getNonFatalBomb();
-		mouse.setPic(4);
+
 		normalBomb.add(new Sprite(x.getImages()[0], x.getNumber()));
 
 		int j = random.nextInt(2);
@@ -389,7 +389,7 @@ public class LevelView {
 
 			@Override
 			public void handle(ActionEvent event) {
-				if (!e.changedImage && e.getNumber() < 3) {
+				if (!e.isChangedImage() && e.getNumber() < 3) {
 					controller.checkIfIsSliced(objects.size() - 1);
 				}
 			}
@@ -412,16 +412,20 @@ public class LevelView {
 				for (int i = 0; i < objects.size(); i++) {
 					Sprite x = objects.get(i);
 
-					if (x.intersects(mouse)) {
+					if (x.intersects(mouse) && !x.isChangedImage()) {
 						int number = x.getNumber();
 
 						soundSlicing();
-
 						Image img2 = new Image("file:src/gui/related/" + types[number] + "sliced.png");
+
 						x.getImage().setDisable(true);
+
 						x.setImage(img2);
+
 						controller.sliceFruit(i);
-						x.changedImage = true;
+
+						x.setChangedImage(true);
+						x.getImage().setDisable(false);
 						System.out.println(x + " sliced");
 
 					}
@@ -430,28 +434,33 @@ public class LevelView {
 
 				for (int i = 0; i < specialFruit.size(); i++) {
 					Sprite x = specialFruit.get(i);
-					if (x.intersects(mouse)) {
+
+					if (x.intersects(mouse) && !x.isChangedImage()) {
 						int number = x.getNumber();
 						soundSlicing();
 						Image img2 = new Image("file:src/gui/related/sliced" + types[number] + ".png");
 						x.getImage().setDisable(true);
 						x.setImage(img2);
+						x.setChangedImage(true);
+						x.getImage().setDisable(false);
 						controller.sliceSpecialFruit(i);
+
 						time = timeSeconds + 4;
-						/*
-						 * System.out.println(); System.out.println(time);
-						 */
 
 					}
 
 				}
-				for (int j = 0; j < normalBomb.size(); j++) {
-					if (normalBomb.get(j).intersects(mouse)) {
-						controller.sliceNonFatalBomb(j);
+				for (int i = 0; i < normalBomb.size(); i++) {
+					Sprite x = normalBomb.get(i);
+
+					if (x.intersects(mouse) && !x.isChangedImage()) {
+						controller.sliceNonFatalBomb(i);
 						bombSlicing();
 						Image img2 = new Image("file:src/gui/related/boooomb.png", 80, 80, false, false);
-						normalBomb.get(j).getImage().setDisable(true);
-						normalBomb.get(j).setImage(img2);
+						x.getImage().setDisable(true);
+						x.setImage(img2);
+						x.setChangedImage(true);
+						x.getImage().setDisable(false);
 
 					}
 				}
@@ -462,7 +471,6 @@ public class LevelView {
 					}
 				}
 
-				// }
 				int x = timeSeconds;
 				if (x >= time) {
 					controller.endDoubleScore();
