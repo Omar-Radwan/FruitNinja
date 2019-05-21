@@ -129,13 +129,17 @@ public class Controller implements IController {
 
 	public void sliceSpecialFruit(int indx) {
 		Fruit fruit = (Fruit) levelModel.getSpecialFruits().get(indx);
+		
 		if (!fruit.isSliced()) {
+		
 			fruit.slice();
+			
 			if (fruit instanceof SpecialBanana) {
 				levelModel.setDoubleScore(true);
 			} else if (fruit instanceof SpecialOrange) {
 				levelModel.setLives(levelModel.getLives() + 1);
 			}
+			
 			levelView.updateLives(levelModel.getLives());
 			levelView.updateScore(levelModel.getScore());
 			levelView.updateBestScore(levelModel.getBestScore());
@@ -171,7 +175,7 @@ public class Controller implements IController {
 			bomb.slice();
 
 			commandsMap.get("decreaseLives").execute();
-
+			
 			if (levelModel.getLives() <= 0) {
 				levelView.GameOverScene();
 			}
@@ -209,10 +213,11 @@ public class Controller implements IController {
 		return levelModel.getPathNormalDur();
 	}
 
+	
 	/*
 	 * updating functions
 	 */
-
+	
 	public void endDoubleScore() {
 		commandsMap.get("endDoubleScore").execute();
 	}
