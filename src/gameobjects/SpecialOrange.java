@@ -1,7 +1,7 @@
 package gameobjects;
 
-public class SpecialMango extends Fruit {
-	public SpecialMango() {
+public class SpecialOrange extends Fruit {
+	public SpecialOrange() {
 		super();
 		this.number = 6;
 		images = bufferedImagesFactory.getSpecialMangoImages();

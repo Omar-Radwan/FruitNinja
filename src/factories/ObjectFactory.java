@@ -6,7 +6,7 @@ import gameobjects.FatalBomb;
 import gameobjects.GameObject;
 import gameobjects.NonFatalBomb;
 import gameobjects.SpecialBanana;
-import gameobjects.SpecialMango;
+import gameobjects.SpecialOrange;
 import gameobjects.Watermelon;
 
 public class ObjectFactory {
@@ -34,7 +34,7 @@ public class ObjectFactory {
 		else if (gameObject.equalsIgnoreCase("SpecialBanana"))
 			return new SpecialBanana();
 		else if (gameObject.equalsIgnoreCase("SpecialMango"))
-			return new SpecialMango();
+			return new SpecialOrange();
 		else if (gameObject.equalsIgnoreCase("FatalBomb"))
 			return new FatalBomb();
 		else if (gameObject.equalsIgnoreCase("NonFatalBomb"))
