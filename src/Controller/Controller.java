@@ -43,6 +43,7 @@ public class Controller implements IController {
 		this.levelView = levelView;
 		levelView.updateBestScore(levelModel.getBestScore());
 		levelView.updateLives(levelModel.getLives());
+		levelView.updateScore(levelModel.getScore());
 
 	}
 
@@ -91,12 +92,15 @@ public class Controller implements IController {
 
 	public void checkIfIsSliced(int indx) {
 		Fruit fruit = (Fruit) levelModel.getFruits().get(indx);
+
 		if (!fruit.isSliced()) {
 			commandsMap.get("decreaseLives").execute();
 		}
+
 		if (levelModel.getLives() <= 0) {
 			levelView.GameOverScene();
 		}
+
 		levelView.updateLives(levelModel.getLives());
 	}
 

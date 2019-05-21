@@ -1,12 +1,10 @@
 package gui.related;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
 
 import Controller.Controller;
 import Controller.IController;
-import gameobjects.GameObject;
 import gameobjects.IGameObject;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -34,8 +32,6 @@ import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.AudioClip;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.CubicCurveTo;
 import javafx.scene.shape.LineTo;
@@ -48,43 +44,45 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import levelmodels.ILevelModel;
 
 public class LevelView {
+
 	private Group root = new Group();
 	private GraphicsContext gc;
 	private Canvas canvas = new Canvas(800, 500);
-	static int bestScore = 0;
-	private int StartTime = 0;
-	private Label timerLabel = new Label();
-	private Integer timeSeconds = StartTime;
+
+	private int timeSeconds = 0;
 	private Timeline timeline;
 	private Random random = new Random();
-	private PathTransition pathT;
-	private static int CurrScore = 0;
+
 	protected Sprite mouse = new Sprite();
-	private double indexX, indexY;
+
 	protected Scene scene;
-	static Integer live = 3;
-	Label currentScore;
-	Label bestScoreLabel;
-	Label scoreImg = new Label();
-//	static int fruitSpeedX;// = 4;
-//	static int fruitSpeedY;// = 3;
+
+	// game labels
+	private Label timerLabel = new Label();
+	private Label currentScore;
+	private Label bestScoreLabel;
+	private Label scoreImg = new Label();
+	private Label livesLabel = new Label();
 
 	private Image background = new Image("file:src/gui/related/background.jpg");
 
 	public IController controller;
 
+	// sprites arraylists
 	private ArrayList<Sprite> objects = new ArrayList<Sprite>();
 	private ArrayList<Sprite> fatalBomb = new ArrayList<Sprite>();
 	private ArrayList<Sprite> normalBomb = new ArrayList<Sprite>();
 	private ArrayList<Sprite> specialFruit = new ArrayList<Sprite>();
 
 	private Stage stage;
+
+	// types mapping
 	private String[] types;
 
 	private void fillTypes() {
+
 		types = new String[10];
 
 		types[0] = "banana";
@@ -118,24 +116,7 @@ public class LevelView {
 		this.controller = controller;
 	}
 
-	int objectsNumb = 0;
-	int fatalBombs = 0;
-	int normalBombs = 0;
-	int specialFruits = 0;
-	static int fataBombDur;
-
-	static int normalBombDur;
-
-	static int pathFruitDur;
-	Label livesLabel = new Label();
-
 	public void level() {
-
-		fataBombDur = controller.getPathFatalDur();
-
-		normalBombDur = controller.getPathNormalDur();
-
-		pathFruitDur = controller.getPathFruitDur();
 
 		root.getChildren().add(canvas);
 		gc = canvas.getGraphicsContext2D();
@@ -143,93 +124,69 @@ public class LevelView {
 
 		// label to current score :
 
-		currentScore = new Label("" + CurrScore);
+		currentScore = new Label();
 		currentScore.setLayoutX(50);
 		currentScore.setLayoutY(0);
 		currentScore.setTextFill(Color.GOLDENROD);
 		currentScore.setFont(Font.font("Vineta BT", FontWeight.EXTRA_BOLD, 20));
-		
-		bestScoreLabel = new Label("Best: " + bestScore);
+
+		bestScoreLabel = new Label();
 		bestScoreLabel.setTextFill(Color.GREEN);
 		bestScoreLabel.setFont(Font.font("Broadway", FontWeight.EXTRA_BOLD, 20));
 
-		timerLabel.setText(timeSeconds.toString());
+		timerLabel.setText(Integer.toString(timeSeconds));
 		timerLabel.setTextFill(Color.RED);
 		timerLabel.setStyle("-fx-font-size: 4em;");
 		timerLabel.setLayoutX(750);
 		timerLabel.setLayoutY(0);
-		timeSeconds = StartTime;
+
+		timeSeconds = 0;
 		timeline = new Timeline();
+
 		timeline.setCycleCount(Timeline.INDEFINITE);
+
 		timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(1), new EventHandler() {
 
 			@Override
 			public void handle(Event event) {
-
 				timeSeconds++;
-				// update timerLabel
-				timerLabel.setText(timeSeconds.toString());
-//		                        if (timeSeconds <= 0) {
-//		                            timeline.stop();
-//		                        }
+				timerLabel.setText(Integer.toString(timeSeconds));
 
 			}
-			// KeyFrame event handler
-
 		}));
+
 		timeline.playFromStart();
-		/*
-		 * new AnimationTimer() {
-		 * 
-		 * @Override public void handle(long arg0) { rendering(); updateGame(); }
-		 * }.start();
-		 */
-		// setImages();
-		/*
-		 * setPath(); pathT.play();
-		 */
-		/*
-		 * Circle circle = new Circle(50);
-		 * circle.setCenterX(objects.get(0).getPositionX()); circle.setCenterY(500);
-		 * root.getChildren().add(circle);
-		 */
 
 		Image image2 = new Image("file:src/gui/related/animated-heart-image-0503.gif", 40, 40, false, false);
-		livesLabel.setText(live.toString());
-		/*
-		 * Color c1 = Color.RED; label2.setTextFill(c1);
-		 * label2.setFont(Font.font("Verdana", FontWeight.BOLD, 30));
-		 */
+
 		setLabel(livesLabel);
 		livesLabel.setGraphic(new ImageView(image2));
-		/*
-		 * grid.add(label2, 1, 0); GridPane.setHalignment(label2,HPos.RIGHT);
-		 */
 		livesLabel.setLayoutX(720);
 		livesLabel.setLayoutY(70);
-		
-		////////////
+
 		Image image3 = new Image("file:src/gui/related/score.png", 60, 60, false, false);
+
 		scoreImg.setGraphic(new ImageView(image3));
-		
 		scoreImg.setLayoutX(10);
 		scoreImg.setLayoutY(0);
+
 		root.getChildren().add(scoreImg);
-		///////////////////
 		root.getChildren().add(livesLabel);
+
 		repeatingImage();
 		repeatingfatalBomb();
 		repeatingnormalBomb();
 		repeatSpecialFruit();
+
 		VBox vb = new VBox(10);
 		vb.getChildren().addAll(currentScore, bestScoreLabel);
 		root.getChildren().addAll(vb, timerLabel);
 		scene = new Scene(root, 800, 500);
+
 		Image mouse = new Image("file:src/gui/related/knife.png");
 		scene.setCursor(new ImageCursor(mouse));
 		stage.setScene(scene);
-		cut(stage);
-
+		cut();
 	}
 
 	private void setLabel(Label label) {
@@ -245,10 +202,11 @@ public class LevelView {
 			@Override
 			public void handle(Event event) {
 				setSpecialFruit();
-				setPathOfSpecialFruit(specialFruits - 1);
+				setPathOfSpecialFruit(specialFruit.size() - 1);
 
 			}
 		}));
+
 		timeline.setCycleCount(Animation.INDEFINITE);
 		timeline.setAutoReverse(true);
 		timeline.play();
@@ -257,10 +215,11 @@ public class LevelView {
 	public void setSpecialFruit() {
 		IGameObject x = controller.getSpecialFruit();
 		specialFruit.add(new Sprite(x.getImages()[0], x.getNumber()));
+
 		Random r = new Random();
+
 		specialFruit.get(specialFruit.size() - 1).setPositinoX(r.nextInt(700) + 10);
 		specialFruit.get(specialFruit.size() - 1).setPositionY(-50);
-		specialFruits++;
 
 	}
 
@@ -292,8 +251,6 @@ public class LevelView {
 			setPositionY(fatalBomb.get(fatalBomb.size() - 1));
 		}
 
-		fatalBombs++;
-
 	}
 
 	public void repeatingfatalBomb() {
@@ -302,7 +259,7 @@ public class LevelView {
 			public void handle(Event event) {
 				setFatalBomb();
 				// setPathOfFatalBombs(fatalBombs - 1);
-				setPath(fatalBomb.get(fatalBombs - 1), fataBombDur);
+				setPath(fatalBomb.get(fatalBomb.size() - 1), controller.getFataldur());
 			}
 		}));
 
@@ -324,8 +281,6 @@ public class LevelView {
 			setPositionY(normalBomb.get(normalBomb.size() - 1));
 		}
 
-		normalBombs++;
-
 	}
 
 	public void repeatingnormalBomb() {
@@ -333,7 +288,7 @@ public class LevelView {
 			@Override
 			public void handle(Event event) {
 				setNormalBomb();
-				setPath(normalBomb.get(normalBombs - 1), normalBombDur);
+				setPath(normalBomb.get(normalBomb.size() - 1), controller.getNormaldur());
 			}
 		}));
 
@@ -348,7 +303,7 @@ public class LevelView {
 			@Override
 			public void handle(Event event) {
 				setFruits();
-				setPath(objects.get(objectsNumb - 1), pathFruitDur);
+				setPath(objects.get(objects.size() - 1), controller.getPathFruitDur());
 			}
 		}));
 
@@ -371,7 +326,6 @@ public class LevelView {
 			setPositionY(objects.get(objects.size() - 1));
 		}
 
-		objectsNumb++;
 	}
 
 	public void setPositionX(Sprite e) {
@@ -420,27 +374,31 @@ public class LevelView {
 
 		}
 		root.getChildren().add(e.getImage());
+
 		PathTransition pat = new PathTransition();
-		pat = new PathTransition();
+
 		pat.setNode(e.getImage());
 		pat.setPath(path);
 		pat.setAutoReverse(false);
 		pat.setCycleCount(1);
 		pat.setDuration(Duration.millis(dur));
 		pat.play();
+
 		pat.setOnFinished(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent event) {
-				if(e.getImage().isDisabled() == false && e.getNumber()!=3 && e.getNumber()!=4)
-				controller.checkIfIsSliced(objectsNumb-1);
+				if (!e.changedImage && e.getNumber() < 3) {
+					controller.checkIfIsSliced(objects.size() - 1);
+				}
 			}
 		});
+
 	}
 
 	int time;
 
-	public void cut(Stage stage) {
+	public void cut() {
 		scene.setOnMouseMoved(new EventHandler<MouseEvent>() {
 
 			@Override
@@ -452,22 +410,21 @@ public class LevelView {
 
 				for (int i = 0; i < objects.size(); i++) {
 					Sprite x = objects.get(i);
-				//	System.out.println(objects.get(i).getPositionY());
+
 					if (x.intersects(mouse)) {
 						int number = x.getNumber();
+
 						soundSlicing();
+
 						Image img2 = new Image("file:src/gui/related/" + types[number] + "sliced.png");
 						x.getImage().setDisable(true);
 						x.setImage(img2);
 						controller.sliceFruit(i);
-						
-					}
-				/*	else if(x.getPositionY() >= 600) {
-						System.out.println("FU");
-						controller.checkIfIsSliced(i);
-					}*/
+						x.changedImage = true;
+						System.out.println(x + " sliced");
 
-					
+					}
+
 				}
 
 				for (int i = 0; i < specialFruit.size(); i++) {
@@ -500,9 +457,7 @@ public class LevelView {
 
 				for (int k = 0; k < fatalBomb.size(); k++) {
 					if (fatalBomb.get(k).intersects(mouse)) {
-
 						controller.sliceFatalBomb();
-
 					}
 				}
 
@@ -527,18 +482,22 @@ public class LevelView {
 				+ "    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 3, 0.0 , 0 , 1 );");
 
 		button.setTextFill(Color.WHEAT);
+
 	}
+
 	public void GameOverScene() {
-		
+
 		Text GO = new Text("GAME OVER");
 		Font f = Font.font("Castellar", FontWeight.BOLD, FontPosture.REGULAR, 100);
 		GO.setFill(Color.RED);
 		GO.setFont(f);
+
 		HBox hb = new HBox(30);
 		hb.getChildren().add(GO);
 
 		hb.setAlignment(Pos.CENTER);
 		Image img = new Image("file:src/gui/related/background.jpg");
+
 		BackgroundImage bgImg = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
 				BackgroundPosition.DEFAULT,
 				new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false));
@@ -549,14 +508,19 @@ public class LevelView {
 
 		Button newGame = new Button("New game");
 		setStyle(newGame);
+
 		Button exit = new Button("Exit");
 		setStyle(exit);
 
-		
 		vb.getChildren().add(exit);
 		vb.getChildren().add(newGame);
 		vb.setAlignment(Pos.CENTER_RIGHT);
 		hb.getChildren().add(vb);
+
+		Scene gameOver = new Scene(hb, 800, 500);
+		stage.setScene(gameOver);
+
+		// x.play();
 		exit.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
@@ -572,73 +536,59 @@ public class LevelView {
 		newGame.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
+				// x.stop();
 				click();
-				// TODO Auto-generated method stub
-				HomeScreen hm = new HomeScreen(stage);
-				hm.screen();
-			//	createNewLevel(levelModel);
-				//hm.createNewLevel(levelModel);
-				
 
+				stage.close();
+				HomeScreen homeScreen = new HomeScreen(new Stage());
+				homeScreen.screen();
+				homeScreen.setController(new Controller());
+				homeScreen.click();
 			}
 		});
-		Scene gameOver = new Scene(hb, 800, 500);
-		stage.setScene(gameOver);
-		stage.show();
-		GameOverSound();
-	}
-	//////////////////////////////
-	
-	/////////////////////////////////
-	
 
-	// --------------------------------Controller Related
-	// Functions-------------------------------------
+	}
+
+	/*
+	 * updating labels functions
+	 */
+
 	public void updateScore(int value) {
-		currentScore.setText("" + value);
-		currentScore.setLayoutX(10);
-		currentScore.setLayoutY(0);
+		currentScore.setText("scroe: " + value);
 	}
 
 	public void updateBestScore(int value) {
-		bestScoreLabel.setText("best :" + value);
+		bestScoreLabel.setText("best:" + value);
 	}
 
 	public void updateLives(int value) {
 		livesLabel.setText(Integer.toString(value));
 	}
 
-	// -------------------------------SoundFunctions---------------------------------------------
+	/*
+	 * sound functions
+	 */
 
-	protected void GameOverSound() {
-		AudioClip ov = new AudioClip(this.getClass()
-				.getResource("gameOver.mp3").toString());
-		ov.play();
+	protected AudioClip GameOverSound() {
+		return new AudioClip("file:src/gui/related/gameOver.mp3");
 	}
 
 	protected void soundSlicing() {
-		AudioClip s = new AudioClip(this.getClass()
-				.getResource("Slice.mp3").toString());
+		AudioClip s = new AudioClip("file:src/gui/related/Slice.mp3");
 		s.play();
 
 	}
 
 	protected void bombSlicing() {
-		AudioClip s = new AudioClip(this.getClass()
-				.getResource("bombSound.mp3").toString());
+		AudioClip s = new AudioClip("file:src/gui/related/bombSound.mp3");
 		s.play();
 
 	}
+
 	protected void click() {
-		AudioClip s = new AudioClip(this.getClass()
-				.getResource("click.mp3").toString());
+		AudioClip s = new AudioClip("file:src/gui/related/click.mp3");
 		s.play();
 
 	}
-//	private void gameMusic() {
-//		String musicFile = "audio_hero_Laughs-And-Giggles_SIPML_K-04-01-01.mp3"; // For example
-//		Media sound = new Media(new File(musicFile).toURI().toString());
-//		MediaPlayer mediaPlayer = new MediaPlayer(sound);
-//		mediaPlayer.play();
-//	}
+
 }

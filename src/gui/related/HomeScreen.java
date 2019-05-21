@@ -68,8 +68,11 @@ public class HomeScreen {
 		setStyle(easy);
 		setStyle(medium);
 		setStyle(hard);
+		
 		VBox vb = new VBox(20);
+		
 		vb.getChildren().addAll(easy, medium, hard);
+		
 		vb.setAlignment(Pos.CENTER);
 		// TODO :easy set on action
 		easy.setOnAction(new EventHandler<ActionEvent>() {
@@ -109,6 +112,7 @@ public class HomeScreen {
 
 		Scene scene = new Scene(vb, 800, 500);
 		stage.setScene(scene);
+		stage.show();
 	}
 
 	private void createNewLevel(ILevelModel levelModel) {
@@ -117,9 +121,9 @@ public class HomeScreen {
 		controller.setLevelView(level);
 
 	}
+
 	protected void click() {
-		AudioClip s = new AudioClip(this.getClass()
-				.getResource("click.mp3").toString());
+		AudioClip s = new AudioClip(this.getClass().getResource("click.mp3").toString());
 		s.play();
 
 	}

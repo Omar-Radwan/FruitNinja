@@ -1,19 +1,10 @@
 package gui.related;
 
-
 import java.util.Random;
 
-import javafx.animation.PathTransition;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
-import javafx.scene.shape.QuadCurveTo;
-import javafx.scene.shape.Rectangle;
-import javafx.util.Duration;
 
 public class Sprite {
 	private Image image;
@@ -21,6 +12,7 @@ public class Sprite {
 	private double positionY;
 	public double width;
 	public double height;
+	public boolean changedImage;
 
 	protected int number;
 
@@ -49,12 +41,13 @@ public class Sprite {
 		img.setY(500);
 		img.setX(0);
 		// circle.setLayoutY(500);
-	//	circle.setCenterY(500);
+		// circle.setCenterY(500);
 		width = image.getWidth();
 		height = image.getHeight();
 		// maxHeight = random.nextInt(500) * 0.1 + 200;
-	//	circle.setRadius(radius);
+		// circle.setRadius(radius);
 		this.number = number;
+		this.changedImage = false;
 	}
 
 	private int pic;
@@ -68,7 +61,7 @@ public class Sprite {
 	}
 
 	public void setPositinoX(double positionX) {
-			img.setX(positionX);
+		img.setX(positionX);
 	}
 
 	public ImageView getImage() {
@@ -81,8 +74,8 @@ public class Sprite {
 
 	public void setPositionY(double positionY) {
 		// circle.setLayoutY(positionY);
-		//circle.setCenterY(positionY);
-		
+		// circle.setCenterY(positionY);
+
 		img.setY(positionY);
 	}
 
@@ -103,22 +96,24 @@ public class Sprite {
 	}
 
 	public double getPositionX() {
-		return img.getX()+img.getTranslateX();
+		return img.getX() + img.getTranslateX();
 	}
 
 	public double getPositionY() {
-		return img.getY()+img.getTranslateY();
+		return img.getY() + img.getTranslateY();
 	}
 
-	/*public void render(GraphicsContext gc) {
-		gc.drawImage(image, img.getTranslateX()+positionX, img.getTranslateY()+positionY);
-
-	}*/
-
+	/*
+	 * public void render(GraphicsContext gc) { gc.drawImage(image,
+	 * img.getTranslateX()+positionX, img.getTranslateY()+positionY);
+	 * 
+	 * }
+	 */
 
 	private Rectangle2D getBoundary() {
-		return new Rectangle2D(img.getTranslateX()+positionX, img.getTranslateY()+positionY, width, height);
+		return new Rectangle2D(img.getTranslateX() + positionX, img.getTranslateY() + positionY, width, height);
 	}
+
 	private Rectangle2D getboundaryOfMouse() {
 		return new Rectangle2D(positionX, positionY, width, height);
 
