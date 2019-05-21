@@ -101,14 +101,6 @@ public abstract class LevelModel implements ILevelModel {
 		this.specialFruits = specialFruits;
 	}
 
-	public Random getR() {
-		return r;
-	}
-
-	public void setR(Random r) {
-		this.r = r;
-	}
-
 	public int getRepeatDur() {
 		return repeatDur;
 	}
@@ -165,94 +157,7 @@ public abstract class LevelModel implements ILevelModel {
 		this.bestScore = bestScore;
 	}
 
-	/*
-	 * GameObject getters
-	 */
-	public IGameObject getRandomFruit() {
 
-		int i = r.nextInt(3);
-
-		GameObject x = null;
-
-		if (i == 0)
-			x = objectFactory.getGameObject("banana");
-		else if (i == 1) {
-			x = objectFactory.getGameObject("apple");
-		} else
-			x = objectFactory.getGameObject("watermelon");
-		fruits.add(x);
-
-		return x;
-	}
-
-	// eb2a 8aiar al asamy bta3t al special fruits hna
-	public IGameObject getRandomSpecialFruit() {
-		int i = r.nextInt(2);
-
-		GameObject x = null;
-
-		if (i == 0) {
-			x = objectFactory.getGameObject("SpecialBanana");
-		} else {
-			x = objectFactory.getGameObject("SpecialMango");
-		}
-		specialFruits.add(x);
-		return x;
-
-	}
-
-	public IGameObject getNonFatalBomb() {
-		GameObject x = objectFactory.getGameObject("nonfatalbomb");
-		nonFatalBombs.add(x);
-		return x;
-	}
-
-	public IGameObject getFatalBomb() {
-		return objectFactory.getGameObject("fatalbomb");
-	}
-
-	/*
-	 * Slicing functions
-	 */
-
-	public void sliceFruit(int indx) {
-
-		Fruit fruit = (Fruit) fruits.get(indx);
-
-		if (!fruit.isSliced()) {
-			fruit.slice();
-			if (!isDoubleScore)
-				score += fruit.getScore();
-			else
-				score += (fruit.getScore() * 2);
-
-			if (score > bestScore) {
-				bestScore = score;
-			}
-		}
-
-	}
-
-	public void sliceSpecialFruit(int indx) {
-		Fruit fruit = (Fruit) specialFruits.get(indx);
-		if (!fruit.isSliced()) {
-			fruit.slice();
-			if (fruit instanceof SpecialBanana) {
-				isDoubleScore = true;
-			} else if (fruit instanceof SpecialMango) {
-				lives++;
-			}
-		}
-	}
-
-	public void sliceNonFatalBomb(int indx) {
-		Bomb bomb = (Bomb) nonFatalBombs.get(indx);
-		if (!bomb.isSliced()) {
-			bomb.slice();
-			lives--;
-			System.out.println(lives);
-		}
-	}
 
 	public void decreaseLives() {
 		lives--;

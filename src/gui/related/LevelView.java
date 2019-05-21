@@ -64,7 +64,6 @@ public class LevelView {
 	private Label currentScore;
 	private Label bestScoreLabel;
 	private Label scoreImg = new Label();
-	private Label livesLabel = new Label();
 
 	private Image background = new Image("file:src/gui/related/background.jpg");
 
@@ -115,6 +114,8 @@ public class LevelView {
 	public void setController(IController controller) {
 		this.controller = controller;
 	}
+
+	Label livesLabel = new Label();
 
 	public void level() {
 
