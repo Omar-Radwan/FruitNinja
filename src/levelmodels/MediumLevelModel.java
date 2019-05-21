@@ -4,12 +4,12 @@ public class MediumLevelModel extends LevelModel {
 
 	public MediumLevelModel() {
 		super();
-		repeatDur = 500;
+		repeatDur = 1000;
 		fataldur = 5000;
-		normaldur = 4000;
-		pathFruitDur = 3000;
-		pathFatalDur = 3000;
-		pathNormalDur = 3000;
+		normaldur = 5500;
+		pathFruitDur = 2500;
+		pathFatalDur = 2000;
+		pathNormalDur = 2000;
 		fileName = "mediumscore.txt";
 	}
 }

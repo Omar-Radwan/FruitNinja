@@ -3,11 +3,11 @@ public class HardLevelModel extends LevelModel {
 
 	public HardLevelModel() {
 		super();
-		repeatDur = 250;
+		repeatDur = 750;
 		fataldur = 2000;
-		normaldur = 1000;
+		normaldur = 2000;
 		pathFruitDur = 2000;
-		pathFatalDur = 1000;
+		pathFatalDur = 2000;
 		pathNormalDur = 2000;
 		fileName = "hardscore.txt";
 	}

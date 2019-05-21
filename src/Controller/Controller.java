@@ -102,6 +102,21 @@ public class Controller implements IController {
 		levelModel.getSpecialFruits().add(x);
 		return x;
 	}
+	public void arcadeSliceBomb(int indx)
+	{
+		Bomb bomb = (Bomb) levelModel.getNonFatalBombs().get(indx);
+
+		if (!bomb.isSliced()) {
+
+			bomb.slice();
+
+			levelModel.setScore(levelModel.getScore()-1);
+			levelModel.setScore(Math.max(levelModel.getScore(), 0));
+			
+
+			levelView.updateScore(levelModel.getScore());
+		}
+	}
 
 	/*
 	 * Slicing functions

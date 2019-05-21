@@ -9,6 +9,8 @@ import levelmodels.LevelModel;
 public interface IController {
 
 	public int getRepeatDur();
+	
+	public void arcadeSliceBomb(int indx);
 
 	public int getFataldur();
 
