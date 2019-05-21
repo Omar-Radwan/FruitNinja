@@ -43,5 +43,6 @@ public interface IController {
 	public IGameObject getSpecialFruit();
 
 	public IGameObject getNonFatalBomb();
+	public IGameObject getSpecialBanana();
 
 }
