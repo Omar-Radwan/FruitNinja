@@ -41,7 +41,7 @@ public class HomeScreen {
 	public HomeScreen(Stage stage) {
 		this.stage = stage;
 	}
-
+	private BackgroundImage bgImg;
 	private Button easy = new Button("Easy");
 	private Button medium = new Button("Medium");
 	private Button hard = new Button("Hard");
@@ -78,6 +78,7 @@ public class HomeScreen {
 			public void handle(ActionEvent arg0) {
 				click();
 				createNewLevel(new EasyLevelModel());
+				stage.setScene(scene());
 
 			}
 		});
@@ -88,6 +89,7 @@ public class HomeScreen {
 			public void handle(ActionEvent arg0) {
 				click();
 				createNewLevel(new MediumLevelModel());
+				stage.setScene(scene());
 			}
 		});
 		// TODO: hard set on action
@@ -97,11 +99,12 @@ public class HomeScreen {
 			public void handle(ActionEvent arg0) {
 				click();
 				createNewLevel(new HardLevelModel());
+				stage.setScene(scene());
 			}
 		});
 
 		Image img = new Image("file:src/gui/related/fruit-ninjaBackground.jpg");
-		BackgroundImage bgImg = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
+		 bgImg = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
 				BackgroundPosition.DEFAULT,
 				new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false));
 
@@ -110,10 +113,29 @@ public class HomeScreen {
 		Scene scene = new Scene(vb, 800, 500);
 		stage.setScene(scene);
 	}
+	private Scene scene() {
+		Button arcadeMode = new Button("Arcade Mode");
+		Button normalMode = new Button("Normal Mode");
+		setStyle(arcadeMode);
+		setStyle(normalMode);
+		arcadeMode.setOnAction(e ->{
+			level =  new ArcadeMode(controller, stage);
+		});
+		normalMode.setOnAction(e -> {
+			level = new NormalMode(controller, stage);
+			
+		});
+		VBox vb = new VBox(20);
+		vb.setAlignment(Pos.TOP_CENTER);
+		vb.getChildren().addAll(arcadeMode , normalMode);
+		vb.setBackground(new Background(bgImg));
+		Scene scene = new Scene(vb , 800 , 500);
+		return scene;
+	}
 
 	private void createNewLevel(ILevelModel levelModel) {
 		controller.setLevelModel(levelModel);
-		level = new LevelView(controller, stage);
+		//level = new LevelView(controller, stage);
 		controller.setLevelView(level);
 
 	}

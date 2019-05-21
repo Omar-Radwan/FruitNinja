@@ -47,7 +47,7 @@ public class ArcadeMode extends LevelView {
 
 	}
 	@Override
-	public void cut() {
+	public void cut() 
 		{
 			scene.setOnMouseMoved(new EventHandler<MouseEvent>() {
 
@@ -60,19 +60,12 @@ public class ArcadeMode extends LevelView {
 
 					for (int i = 0; i < objects.size(); i++) {
 						Sprite x = objects.get(i);
-
 						if (x.intersects(mouse) && !x.isChangedImage()) {
 							int number = x.getNumber();
-
 							soundSlicing();
 							Image img2 = new Image("file:src/gui/related/" + types[number] + "sliced.png");
-
 							x.getImage().setDisable(true);
-
 							x.setImage(img2);
-
-							controller.sliceFruit(i);
-
 							x.setChangedImage(true);
 							x.getImage().setDisable(false);
 
@@ -92,7 +85,6 @@ public class ArcadeMode extends LevelView {
 							x.setChangedImage(true);
 							x.getImage().setDisable(false);
 							controller.sliceSpecialFruit(i);
-
 							time = timeSeconds -4;
 
 						}
@@ -130,3 +122,4 @@ public class ArcadeMode extends LevelView {
 	
 
 }
+

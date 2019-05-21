@@ -70,15 +70,15 @@ public abstract class LevelView {
 	public IController controller;
 
 	// sprites arraylists
-	private ArrayList<Sprite> objects = new ArrayList<Sprite>();
-	private ArrayList<Sprite> fatalBomb = new ArrayList<Sprite>();
+	ArrayList<Sprite> objects = new ArrayList<Sprite>();
+	ArrayList<Sprite> fatalBomb = new ArrayList<Sprite>();
 	ArrayList<Sprite> normalBomb = new ArrayList<Sprite>();
 	protected ArrayList<Sprite> specialFruit = new ArrayList<Sprite>();
 
 	private Stage stage;
 
 	// types mapping
-	private String[] types;
+	String[] types;
 
 	private void fillTypes() {
 
