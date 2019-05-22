@@ -125,7 +125,7 @@ public class HomeScreen {
 
 		});
 		VBox vb = new VBox(20);
-		vb.setAlignment(Pos.TOP_CENTER);
+		vb.setAlignment(Pos.CENTER);
 		vb.getChildren().addAll(arcadeMode, normalMode);
 		vb.setBackground(new Background(bgImg));
 		Image img = new Image("file:src/gui/related/fruit-ninjaBackground.jpg");
