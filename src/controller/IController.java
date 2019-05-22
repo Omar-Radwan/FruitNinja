@@ -1,4 +1,4 @@
-package Controller;
+package controller;
 
 import gameobjects.GameObject;
 import gameobjects.IGameObject;

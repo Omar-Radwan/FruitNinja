@@ -3,7 +3,7 @@ package gui.related;
 import java.util.ArrayList;
 import java.util.Random;
 
-import Controller.IController;
+import controller.IController;
 import gameobjects.IGameObject;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;

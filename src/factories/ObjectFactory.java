@@ -33,7 +33,7 @@ public class ObjectFactory {
 			return new Watermelon();
 		else if (gameObject.equalsIgnoreCase("SpecialBanana"))
 			return new SpecialBanana();
-		else if (gameObject.equalsIgnoreCase("SpecialMango"))
+		else if (gameObject.equalsIgnoreCase("SpecialOrange"))
 			return new SpecialOrange();
 		else if (gameObject.equalsIgnoreCase("FatalBomb"))
 			return new FatalBomb();

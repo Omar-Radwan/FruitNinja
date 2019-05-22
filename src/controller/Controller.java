@@ -1,4 +1,4 @@
-package Controller;
+package controller;
 
 import java.util.HashMap;
 import java.util.Random;
@@ -86,7 +86,7 @@ public class Controller implements IController {
 		if (i == 0) {
 			x = objectFactory.getGameObject("SpecialBanana");
 		} else {
-			x = objectFactory.getGameObject("SpecialMango");
+			x = objectFactory.getGameObject("SpecialOrange");
 		}
 		levelModel.getSpecialFruits().add(x);
 		return x;
@@ -111,7 +111,7 @@ public class Controller implements IController {
 
 			bomb.slice();
 
-			levelModel.setScore(levelModel.getScore() - 1);
+			levelModel.setScore(levelModel.getScore() - 5);
 			levelModel.setScore(Math.max(levelModel.getScore(), 0));
 
 			levelView.updateScore(levelModel.getScore());

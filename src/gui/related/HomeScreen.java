@@ -1,7 +1,6 @@
 package gui.related;
 
-import Controller.Controller;
-import Controller.IController;
+import controller.IController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -20,7 +19,6 @@ import levelmodels.ArcadeLevelModel;
 import levelmodels.EasyLevelModel;
 import levelmodels.HardLevelModel;
 import levelmodels.ILevelModel;
-import levelmodels.LevelModel;
 import levelmodels.MediumLevelModel;
 
 public class HomeScreen {
@@ -44,6 +42,7 @@ public class HomeScreen {
 	}
 
 	private BackgroundImage bgImg;
+
 	private Button easy = new Button("Easy");
 	private Button medium = new Button("Medium");
 	private Button hard = new Button("Hard");
@@ -138,6 +137,10 @@ public class HomeScreen {
 
 		Scene scene = new Scene(vb, 800, 500);
 		stage.setScene(scene);
+
+		stage.setResizable(false);
+		stage.setTitle("Fruit Ninja");
+
 		stage.show();
 	}
 

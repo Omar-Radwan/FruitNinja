@@ -3,8 +3,8 @@ package gui.related;
 import java.util.ArrayList;
 import java.util.Random;
 
-import Controller.Controller;
-import Controller.IController;
+import controller.Controller;
+import controller.IController;
 import gameobjects.IGameObject;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;

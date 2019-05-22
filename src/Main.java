@@ -1,5 +1,5 @@
 
-import Controller.Controller;
+import controller.Controller;
 import factories.ObjectFactory;
 import gui.related.HomeScreen;
 import javafx.application.Application;
@@ -14,13 +14,8 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws Exception {
 
 		HomeScreen homeScreen = new HomeScreen(primaryStage);
-
 		homeScreen.screen1();
 		homeScreen.setController(new Controller());
-
-		primaryStage.setResizable(false);
-		primaryStage.setTitle("Fruit Ninja");
-		primaryStage.show();
 
 	}
 
