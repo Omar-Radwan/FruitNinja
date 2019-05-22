@@ -15,7 +15,7 @@ public class Main extends Application {
 
 		HomeScreen homeScreen = new HomeScreen(primaryStage);
 
-		homeScreen.screen();
+		homeScreen.screen1();
 		homeScreen.setController(new Controller());
 
 		primaryStage.setResizable(false);

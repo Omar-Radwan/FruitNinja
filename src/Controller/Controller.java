@@ -15,6 +15,7 @@ import gameobjects.GameObject;
 import gameobjects.IGameObject;
 import gameobjects.SpecialBanana;
 import gameobjects.SpecialOrange;
+import gui.related.ArcadeMode;
 import gui.related.LevelView;
 import levelmodels.ILevelModel;
 
@@ -102,17 +103,16 @@ public class Controller implements IController {
 		levelModel.getSpecialFruits().add(x);
 		return x;
 	}
-	public void arcadeSliceBomb(int indx)
-	{
+
+	public void arcadeSliceBomb(int indx) {
 		Bomb bomb = (Bomb) levelModel.getNonFatalBombs().get(indx);
 
 		if (!bomb.isSliced()) {
 
 			bomb.slice();
 
-			levelModel.setScore(levelModel.getScore()-1);
+			levelModel.setScore(levelModel.getScore() - 1);
 			levelModel.setScore(Math.max(levelModel.getScore(), 0));
-			
 
 			levelView.updateScore(levelModel.getScore());
 		}
@@ -144,17 +144,17 @@ public class Controller implements IController {
 
 	public void sliceSpecialFruit(int indx) {
 		Fruit fruit = (Fruit) levelModel.getSpecialFruits().get(indx);
-		
+
 		if (!fruit.isSliced()) {
-		
+
 			fruit.slice();
-			
+
 			if (fruit instanceof SpecialBanana) {
 				levelModel.setDoubleScore(true);
 			} else if (fruit instanceof SpecialOrange) {
 				levelModel.setLives(levelModel.getLives() + 1);
 			}
-			
+
 			levelView.updateLives(levelModel.getLives());
 			levelView.updateScore(levelModel.getScore());
 			levelView.updateBestScore(levelModel.getBestScore());
@@ -166,6 +166,9 @@ public class Controller implements IController {
 	}
 
 	public void checkIfIsSliced(int indx) {
+		if (levelView instanceof ArcadeMode) {
+			return;
+		}
 
 		Fruit fruit = (Fruit) levelModel.getFruits().get(indx);
 
@@ -190,7 +193,7 @@ public class Controller implements IController {
 			bomb.slice();
 
 			commandsMap.get("decreaseLives").execute();
-			
+
 			if (levelModel.getLives() <= 0) {
 				levelView.GameOverScene();
 			}
@@ -228,11 +231,10 @@ public class Controller implements IController {
 		return levelModel.getPathNormalDur();
 	}
 
-	
 	/*
 	 * updating functions
 	 */
-	
+
 	public void endDoubleScore() {
 		commandsMap.get("endDoubleScore").execute();
 	}

@@ -16,6 +16,7 @@ import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
+import levelmodels.ArcadeLevelModel;
 import levelmodels.EasyLevelModel;
 import levelmodels.HardLevelModel;
 import levelmodels.ILevelModel;
@@ -41,6 +42,7 @@ public class HomeScreen {
 	public HomeScreen(Stage stage) {
 		this.stage = stage;
 	}
+
 	private BackgroundImage bgImg;
 	private Button easy = new Button("Easy");
 	private Button medium = new Button("Medium");
@@ -64,7 +66,7 @@ public class HomeScreen {
 
 	}
 
-	public void screen() {
+	public void screen2() {
 		setStyle(easy);
 		setStyle(medium);
 		setStyle(hard);
@@ -78,8 +80,6 @@ public class HomeScreen {
 			public void handle(ActionEvent arg0) {
 				click();
 				createNewLevel(new EasyLevelModel());
-				stage.setScene(scene());
-
 			}
 		});
 		// TODO : medium set on action
@@ -89,7 +89,6 @@ public class HomeScreen {
 			public void handle(ActionEvent arg0) {
 				click();
 				createNewLevel(new MediumLevelModel());
-				stage.setScene(scene());
 			}
 		});
 		// TODO: hard set on action
@@ -99,12 +98,11 @@ public class HomeScreen {
 			public void handle(ActionEvent arg0) {
 				click();
 				createNewLevel(new HardLevelModel());
-				stage.setScene(scene());
 			}
 		});
 
 		Image img = new Image("file:src/gui/related/fruit-ninjaBackground.jpg");
-		 bgImg = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
+		bgImg = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
 				BackgroundPosition.DEFAULT,
 				new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false));
 
@@ -113,35 +111,52 @@ public class HomeScreen {
 		Scene scene = new Scene(vb, 800, 500);
 		stage.setScene(scene);
 	}
-	private Scene scene() {
+
+	public void screen1() {
 		Button arcadeMode = new Button("Arcade Mode");
 		Button normalMode = new Button("Normal Mode");
 		setStyle(arcadeMode);
 		setStyle(normalMode);
-		arcadeMode.setOnAction(e ->{
-			level =  new ArcadeMode(controller, stage);
+
+		arcadeMode.setOnAction(e -> {
+			createNewArcadeLevel(new ArcadeLevelModel());
 		});
 		normalMode.setOnAction(e -> {
-			level = new NormalMode(controller, stage);
-			
+			screen2();
+
 		});
 		VBox vb = new VBox(20);
 		vb.setAlignment(Pos.TOP_CENTER);
-		vb.getChildren().addAll(arcadeMode , normalMode);
+		vb.getChildren().addAll(arcadeMode, normalMode);
 		vb.setBackground(new Background(bgImg));
-		Scene scene = new Scene(vb , 800 , 500);
-		return scene;
+		Image img = new Image("file:src/gui/related/fruit-ninjaBackground.jpg");
+		bgImg = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
+				BackgroundPosition.DEFAULT,
+				new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false));
+
+		vb.setBackground(new Background(bgImg));
+
+		Scene scene = new Scene(vb, 800, 500);
+		stage.setScene(scene);
+		stage.show();
 	}
 
 	private void createNewLevel(ILevelModel levelModel) {
 		controller.setLevelModel(levelModel);
-		//level = new LevelView(controller, stage);
+		level = new NormalMode(controller, stage);
 		controller.setLevelView(level);
 
 	}
+
+	private void createNewArcadeLevel(ILevelModel levelModel) {
+		controller.setLevelModel(levelModel);
+		level = new ArcadeMode(controller, stage);
+		controller.setLevelView(level);
+
+	}
+
 	protected void click() {
-		AudioClip s = new AudioClip(this.getClass()
-				.getResource("click.mp3").toString());
+		AudioClip s = new AudioClip(this.getClass().getResource("click.mp3").toString());
 		s.play();
 
 	}
