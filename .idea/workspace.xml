@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d11ce984-6b07-4278-9e92-966dba718ee6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/scores/arcadescore.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scores/easyscore.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Banana.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Diagrams/Blank-Diagram-Page-1.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/diagrams/Blank-Diagram-Page-1.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Diagrams/Blank-Diagram2-Page-1.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/diagrams/Blank-Diagram2-Page-1.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Diagrams/Blank-Diagram2-Page-2.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/diagrams/Blank-Diagram2-Page-2.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Diagrams/uml fruit ninja.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/diagrams/uml fruit ninja.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FruitNinja.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mango.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Programming-project-Report-fruit-ninja1111111.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Readme.txt.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Starfruit.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Watermelon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/arcadescore.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio_hero_Laughs-And-Giggles_SIPML_K-04-01-01.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/background1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/easyscore.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hardscore.txt" beforeDir="false" afterPath="$PROJECT_DIR$/scores/hardscore.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mediumscore.txt" beforeDir="false" afterPath="$PROJECT_DIR$/scores/mediumscore.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pineapplebig.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pineapplehalf.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/score.txt" beforeDir="false" afterPath="$PROJECT_DIR$/scores/score.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/levelmodels/ArcadeLevelModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/levelmodels/ArcadeLevelModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/levelmodels/EasyLevelModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/levelmodels/EasyLevelModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/levelmodels/HardLevelModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/levelmodels/HardLevelModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/levelmodels/MediumLevelModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/levelmodels/MediumLevelModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/transparent.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/zapsplat_food_tomato_slice_knife_wooden_chopping_board_001_29262.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/zapsplat_human_male_laugh_snigger_closed_mouth_002_15992.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/zapsplat_multimedia_alert_short_2_notes_mallet_synth_exclamation_25550.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/zapsplat_multimedia_click_003_19369.mp3" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution>
+      <executable />
+    </execution>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1mZsNwXyiRMKlCYdBcvCsbIsrBv" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\0lnk\workspace\intellij_workspace\FruitNinja\scores" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="FruitNinja" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d11ce984-6b07-4278-9e92-966dba718ee6" name="Default Changelist" comment="" />
+      <created>1609712410533</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1609712410533</updated>
+      <workItem from="1609712418037" duration="2094000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="233" y="8" key="#Project_Structure" timestamp="1609712490143">
+      <screen x="0" y="0" width="1280" height="690" />
+    </state>
+    <state x="233" y="8" key="#Project_Structure/0.0.1280.690@0.0.1280.690" timestamp="1609712490143" />
+    <state x="393" y="215" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1609713726003">
+      <screen x="0" y="0" width="1280" height="690" />
+    </state>
+    <state x="393" y="215" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1280.690@0.0.1280.690" timestamp="1609713726003" />
+    <state width="1282" height="181" key="GridCell.Tab.0.bottom" timestamp="1609714635264">
+      <screen x="0" y="0" width="1280" height="690" />
+    </state>
+    <state width="1282" height="181" key="GridCell.Tab.0.bottom/0.0.1280.690@0.0.1280.690" timestamp="1609714635264" />
+    <state width="1282" height="181" key="GridCell.Tab.0.center" timestamp="1609714635264">
+      <screen x="0" y="0" width="1280" height="690" />
+    </state>
+    <state width="1282" height="181" key="GridCell.Tab.0.center/0.0.1280.690@0.0.1280.690" timestamp="1609714635264" />
+    <state width="1282" height="181" key="GridCell.Tab.0.left" timestamp="1609714635264">
+      <screen x="0" y="0" width="1280" height="690" />
+    </state>
+    <state width="1282" height="181" key="GridCell.Tab.0.left/0.0.1280.690@0.0.1280.690" timestamp="1609714635264" />
+    <state width="1282" height="181" key="GridCell.Tab.0.right" timestamp="1609714635264">
+      <screen x="0" y="0" width="1280" height="690" />
+    </state>
+    <state width="1282" height="181" key="GridCell.Tab.0.right/0.0.1280.690@0.0.1280.690" timestamp="1609714635264" />
+    <state width="1282" height="225" key="GridCell.Tab.1.bottom" timestamp="1609713822748">
+      <screen x="0" y="0" width="1280" height="690" />
+    </state>
+    <state width="1282" height="225" key="GridCell.Tab.1.bottom/0.0.1280.690@0.0.1280.690" timestamp="1609713822748" />
+    <state width="1282" height="225" key="GridCell.Tab.1.center" timestamp="1609713822748">
+      <screen x="0" y="0" width="1280" height="690" />
+    </state>
+    <state width="1282" height="225" key="GridCell.Tab.1.center/0.0.1280.690@0.0.1280.690" timestamp="1609713822748" />
+    <state width="1282" height="225" key="GridCell.Tab.1.left" timestamp="1609713822748">
+      <screen x="0" y="0" width="1280" height="690" />
+    </state>
+    <state width="1282" height="225" key="GridCell.Tab.1.left/0.0.1280.690@0.0.1280.690" timestamp="1609713822748" />
+    <state width="1282" height="225" key="GridCell.Tab.1.right" timestamp="1609713822748">
+      <screen x="0" y="0" width="1280" height="690" />
+    </state>
+    <state width="1282" height="225" key="GridCell.Tab.1.right/0.0.1280.690@0.0.1280.690" timestamp="1609713822748" />
+    <state x="480" y="60" width="717" height="546" key="find.popup" timestamp="1609714114354">
+      <screen x="0" y="0" width="1280" height="690" />
+    </state>
+    <state x="480" y="60" width="717" height="546" key="find.popup/0.0.1280.690@0.0.1280.690" timestamp="1609714114354" />
+    <state x="302" y="11" width="672" height="678" key="search.everywhere.popup" timestamp="1609713290169">
+      <screen x="0" y="0" width="1280" height="690" />
+    </state>
+    <state x="302" y="11" width="672" height="678" key="search.everywhere.popup/0.0.1280.690@0.0.1280.690" timestamp="1609713290169" />
+  </component>
+</project>

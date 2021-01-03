@@ -10,6 +10,6 @@ public class MediumLevelModel extends LevelModel {
 		pathFruitDur = 2500;
 		pathFatalDur = 2000;
 		pathNormalDur = 2000;
-		fileName = "mediumscore.txt";
+		fileName = "scores/mediumscore.txt";
 	}
 }

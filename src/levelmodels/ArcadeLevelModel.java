@@ -8,7 +8,7 @@ public class ArcadeLevelModel extends LevelModel {
 		normaldur = 4000;
 		pathFruitDur = 3000;
 		pathNormalDur = 3000;
-		fileName = "arcadescore.txt";
+		fileName = "scores/arcadescore.txt";
 	}
 
 }
